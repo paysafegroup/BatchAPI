@@ -1,0 +1,1675 @@
+FORMAT: 1A
+HOST: https://api.test.paysafe.com/cardpayments/
+
+# Paysafe Batch API
+
+Content here
+
+# Release Notes
+
+| Version   | Date                 | Details |
+|---        |---                   |---      |
+| v1        |6th Jan 2022          | Initial Draft|
+
+
+# Overview
+
+Connect your application directly with our payment engine to process a full suite of methods that are REST-based – designed to be easy to understand and use. Ultimate control puts you in the driver’s seat.
+* Choose an efficient, lightweight, and fast integration method to access our API.
+* Implement a wide variety of REST-based API requests – including Purchases, Refunds, and Void  Authorizations.
+* Obtain output in JSON format – it’s easy to parse in a large variety of Web and mobile applications.
+* Use any language or platform to make requests through standard HTTP protocols.
+
+<a name="apikey" title="Authentication"></a>
+# Authentication
+
+In order for you to use the Paysafe REST API, Paysafe must first set you up on their system
+and provide you with an API key. Your API key looks something like this:
+
+ * Key Username – MerchantXYZ
+ * Key Password – B-tst1-0-51ed39e4-312d02345d3f123120881dff9bb4020a89e8ac44cdfdcecd702151182fdc952272661d290ab2e5849e31bb03deede7e
+
+Note that this is not the same as your Merchant Back Office username and password.
+
+The case-sensitive API key is sent using HTTP Basic Authentication. To use HTTP Basic Authentication, you must send the API key credentials using the Authorization header with every request. The Authorization header is constructed as follows:
+
+ 1. The Key Username and Key Password are combined into a string separated by a colon, e.g.,“Key Username:Key Password”.
+ 2. The resulting string literal is then encoded using Base64.
+ 3. The authorization method and a space (i.e., “Basic”) are then put before the encoded string.
+
+For example, using the Key Username and Password examples above, the header is formed as follows:
+
+``Authorization: Basic
+TWVyY2hhbnRYWVo6Qi10c3QxLTAtNTFlZDM5ZTQtMzEyZDAyMzQ1ZDNmMTIzMTIwODgxZGZmOWJiNDAyMGE4OWU4YWM0NGNkZmRjZWNkNzAyMTUxMTgyZmRjOTU yMjcyNjYxZDI5MGFiMmU1ODQ5ZTMxYmIwM2RlZWRlN2U=``
+
+For additional details, please refer to [http://en.wikipedia.org/wiki/Basic_access_authentication](http://en.wikipedia.org/wiki/Basic_access_authentication).
+
+**Note:** Your Production API key will be different from your Test API key. Contact your account manager for details. You must keep your API keys safe and ensure that it is used appropriately for your needs.
+
+# URLs
+
+##  Test URL
+In order to test your integration with Paysafe, use the following Test URL:
+
+`https://api.test.paysafe.com`
+
+For example:
+
+`https://api.test.paysafe.com/v1/applicationbatches/<batchId>}`
+
+## Production URL
+In order to process live requests with Paysafe, use the following Production URL:
+
+`https://api.paysafe.com`
+
+For example:
+
+`https://api.paysafe.com/v1/applicationbatches/<batchId>}
+
+## Application Batch Objects
+
+|Element               |Json Key                  |Types                                                    |Constraints   |Mandatory            |Description                                                          |
+|---                   |---                       |---                                                      |---           |---                  |---                                                                  |                                                    
+| merchantRefNum       |merchantRefNum            | String                                                  |NA            |True                 |Reference Number from merchant for complete batch                    |
+| applications       |applications                | Array of Consolidated Application Object                |NA            |True                 |Array of Applications                                                |
+
+## Get Application Batch by Id [/v1/applicationbatches/<batchId>]
+
+
+### Get Application Batch by Id (Without Errors)[GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
+
++ content here
+
++ Parameters
+    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the .
+    
++ Request (application/json)
+
+Do not supply a request body for this method.            
+
++ Response 201 (application/json) - Get Application Batch without Errors
+
+        {
+          "batchId": "a120530f-6684-4066-9740-4dc1023c07f8",
+          "merchantRefNum": "604207874",
+          "applications": [
+            {
+          "id": "248247365",
+          "type": "INITIAL_APPLICATION",
+          "merchantRefNum": "1604207874",
+          "onboardingConfigId": "109774",
+          "locale": "en",
+          "acceptTermsAndConditions": true,
+          "submit": true,
+          "batchId": "a120530f-6684-4066-9740-4dc1023c07f8",
+          "status": "APPROVED",
+          "statusReasonCode": "AUTO_DECISION",
+          "businessLegalEntity": {
+            "id": "30a6da39-12f0-49d1-a6df-03df9a229b83",
+            "type": "LLC",
+            "legalName": "Good Guy INC US",
+            "taxIdentificationNumber": "987654321",
+            "description": "abc",
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            },
+        "businessDetails": [
+          {
+            "id": "f0a15493-6833-48fb-867e-4155df401f54",
+            "tradeName": "Good Office Services US",
+            "tradeAddress": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            },
+            "category": "ACCT",
+            "website": "https://www.merchantofpaysafeus.com",
+            "phoneNumber": {
+              "countryCode": "+1",
+              "number": "9090909091"
+            },
+            "email": "supportgoodofficeus@gmail.com",
+            "accounts": [
+              {
+                "id": "1004967140",
+                "name": "CARD USD Account1",
+                "paymentType": "CARD",
+                "currency": "USD",
+                "settlementCurrency": "USD",
+                "statementDescriptor": {
+                  "descriptor": "descriptor",
+                  "phone": "8932223111"
+                },
+                "terminalType": "ECOM",
+                "users": [
+                  {
+                    "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741a",
+                    "loginName": "bleusername6042078741a"
+                  },
+                  {
+                    "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741b",
+                    "loginName": "bleusername6042078741b"
+                  },
+                  {
+                    "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741c",
+                    "loginName": "bleusername6042078741c"
+                  },
+                  {
+                    "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741d",
+                    "loginName": "bleusername6042078741d"
+                  },
+                  {
+                    "id": "90270633-0a37-4ba2-9937-e23649756988",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741e",
+                    "loginName": "bleusername6042078741e"
+                  }
+                ],
+                "achBankAccount": {
+                  "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                  "lastDigits": "38",
+                  "routingNumber": "524871232"
+                }
+              },
+              {
+                "id": "1004967290",
+                "name": "CARD USD Account1",
+                "paymentType": "CARD",
+                "currency": "USD",
+                "settlementCurrency": "USD",
+                "statementDescriptor": {
+                  "descriptor": "descriptor",
+                  "phone": "8932223111"
+                },
+                "terminalType": "ECOM",
+                "users": [
+                  {
+                    "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741a",
+                    "loginName": "bleusername6042078741a"
+                  },
+                  {
+                    "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741b",
+                    "loginName": "bleusername6042078741b"
+                  },
+                  {
+                    "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741c",
+                    "loginName": "bleusername6042078741c"
+                  },
+                  {
+                    "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741d",
+                    "loginName": "bleusername6042078741d"
+                  },
+                  {
+                    "id": "90270633-0a37-4ba2-9937-e23649756988",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741e",
+                    "loginName": "bleusername6042078741e"
+                  }
+                ],
+                "achBankAccount": {
+                  "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                  "lastDigits": "38",
+                  "routingNumber": "524871232"
+                }
+              },
+              {
+                "id": "1004967430",
+                "name": "CARD USD Account1",
+                "paymentType": "CARD",
+                "currency": "USD",
+                "settlementCurrency": "USD",
+                "statementDescriptor": {
+                  "descriptor": "descriptor",
+                  "phone": "8932223111"
+                },
+                "terminalType": "ECOM",
+                "users": [
+                  {
+                    "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741a",
+                    "loginName": "bleusername6042078741a"
+                  },
+                  {
+                    "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741b",
+                    "loginName": "bleusername6042078741b"
+                  },
+                  {
+                    "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741c",
+                    "loginName": "bleusername6042078741c"
+                  },
+                  {
+                    "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741d",
+                    "loginName": "bleusername6042078741d"
+                  },
+                  {
+                    "id": "90270633-0a37-4ba2-9937-e23649756988",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741e",
+                    "loginName": "bleusername6042078741e"
+                  }
+                ],
+                "achBankAccount": {
+                  "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                  "lastDigits": "38",
+                  "routingNumber": "524871232"
+                }
+              },
+              {
+                "id": "1004967540",
+                "name": "CARD USD Account1",
+                "paymentType": "CARD",
+                "currency": "USD",
+                "settlementCurrency": "USD",
+                "statementDescriptor": {
+                  "descriptor": "descriptor",
+                  "phone": "8932223111"
+                },
+                "terminalType": "ECOM",
+                "users": [
+                  {
+                    "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741a",
+                    "loginName": "bleusername6042078741a"
+                  },
+                  {
+                    "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741b",
+                    "loginName": "bleusername6042078741b"
+                  },
+                  {
+                    "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741c",
+                    "loginName": "bleusername6042078741c"
+                  },
+                  {
+                    "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741d",
+                    "loginName": "bleusername6042078741d"
+                  },
+                  {
+                    "id": "90270633-0a37-4ba2-9937-e23649756988",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741e",
+                    "loginName": "bleusername6042078741e"
+                  }
+                ],
+                "achBankAccount": {
+                  "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                  "lastDigits": "38",
+                  "routingNumber": "524871232"
+                }
+              },
+              {
+                "id": "1004967640",
+                "name": "CARD USD Account1",
+                "paymentType": "CARD",
+                "currency": "USD",
+                "settlementCurrency": "USD",
+                "statementDescriptor": {
+                  "descriptor": "descriptor",
+                  "phone": "8932223111"
+                },
+                "terminalType": "ECOM",
+                "users": [
+                  {
+                    "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741a",
+                    "loginName": "bleusername6042078741a"
+                  },
+                  {
+                    "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741b",
+                    "loginName": "bleusername6042078741b"
+                  },
+                  {
+                    "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741c",
+                    "loginName": "bleusername6042078741c"
+                  },
+                  {
+                    "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741d",
+                    "loginName": "bleusername6042078741d"
+                  },
+                  {
+                    "id": "90270633-0a37-4ba2-9937-e23649756988",
+                    "email": "bleemail604207874@gmail.com",
+                    "fullName": "bleusername6042078741e",
+                    "loginName": "bleusername6042078741e"
+                  }
+                ],
+                "achBankAccount": {
+                  "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                  "lastDigits": "38",
+                  "routingNumber": "524871232"
+                }
+              }
+            ],
+            "contacts": [
+              {
+                "id": "ab4fa869-77f6-4cea-9149-07a584167fb3",
+                "firstName": "Good",
+                "lastName": "Human1",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.com"
+              },
+              {
+                "id": "7ef99ef7-867b-48c6-a85d-54b9a55e400f",
+                "firstName": "Good",
+                "lastName": "Human1",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.com"
+              },
+              {
+                "id": "5da5bb43-3f6b-482c-8f75-d35754e4a4f4",
+                "firstName": "Good",
+                "lastName": "Human1",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.com"
+              },
+              {
+                "id": "94ade9f0-88a7-49d6-aec1-ffc1fd88545c",
+                "firstName": "Good",
+                "lastName": "Human1",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.com"
+              },
+              {
+                "id": "7c4cc663-358c-46b9-b3a1-85108ae31dac",
+                "firstName": "Good",
+                "lastName": "Human1",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.com"
+              }
+            ]
+          }
+        ],
+        "principals": [
+          {
+            "id": "69d9b928-58e2-4a72-97f1-ffd5ff8d23d9",
+            "isApplicant": true,
+            "isControlProng": true,
+            "firstName": "Sophie",
+            "lastName": "Hosoinon1",
+            "dateOfBirth": {
+              "day": 28,
+              "month": 2,
+              "year": 1984
+            },
+            "ssnLastFour": "2234",
+            "positionInCompany": "Chairman",
+            "type": "OWNER",
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            }
+          },
+          {
+            "id": "2f0b72a9-6a89-4ce3-a218-efd83bda269b",
+            "isApplicant": false,
+            "isControlProng": false,
+            "firstName": "Sophie",
+            "lastName": "Hosoinon2",
+            "dateOfBirth": {
+              "day": 28,
+              "month": 2,
+              "year": 1984
+            },
+            "ssnLastFour": "2234",
+            "positionInCompany": "Chairman",
+            "type": "OWNER",
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            }
+          },
+          {
+            "id": "2d51d504-c34b-4972-8c6d-14af5169ef64",
+            "isApplicant": false,
+            "isControlProng": false,
+            "firstName": "Sophie",
+            "lastName": "Hosoinon3",
+            "dateOfBirth": {
+              "day": 28,
+              "month": 2,
+              "year": 1984
+            },
+            "ssnLastFour": "2234",
+            "positionInCompany": "Chairman",
+            "type": "OWNER",
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            }
+          },
+          {
+            "id": "ba76cd7a-d810-4615-8c1e-71fb3b3ec488",
+            "isApplicant": false,
+            "isControlProng": false,
+            "firstName": "Sophie",
+            "lastName": "Hosoinon4",
+            "dateOfBirth": {
+              "day": 28,
+              "month": 2,
+              "year": 1984
+            },
+            "ssnLastFour": "2234",
+            "positionInCompany": "Chairman",
+            "type": "OWNER",
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            }
+          },
+          {
+            "id": "a51e39a3-f41d-4784-9104-681bc86e6eba",
+            "isApplicant": false,
+            "isControlProng": false,
+            "firstName": "Sophie",
+            "lastName": "Hosoinon5",
+            "dateOfBirth": {
+              "day": 28,
+              "month": 2,
+              "year": 1984
+            },
+            "ssnLastFour": "2234",
+            "positionInCompany": "Chairman",
+            "type": "OWNER",
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "California",
+              "state": "CA",
+              "country": "US",
+              "zip": "90201"
+            }
+          }
+        ]
+      },
+      "termsVersion": [
+        {
+          "region": "US",
+          "termsAndConditions": "10.1"
+        }
+      ]
+    }
+  ]
+}
+
+### Get Application Batch by Id (With Errors)[GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
+
++ content here
+
++ Parameters
+    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the .
+    
++ Request (application/json)
+
+Do not supply a request body for this method.            
+
++ Response 201 (application/json) - Get Application Batch with Errors
+
+    + Body
+
+{
+   "batchId":"ec8e0615-9057-4075-9abb-14a3c65530d6",
+   "merchantRefNum":"976559030",
+   "applications":[
+      {
+         "merchantRefNum":"1976559030",
+         "onboardingConfigId":"109774",
+         "acceptTermsAndConditions":true,
+         "submit":true,
+         "businessLegalEntity":{
+            "type":"LLC",
+            "legalName":"Good Guy INC US",
+            "taxIdentificationNumber":"987654321",
+            "users":[
+               {
+                  "email":"bleemail976559030@gmail.com",
+                  "fullName":"bleusername9765590301",
+                  "loginName":"bleusername9765590301"
+               }
+            ],
+            "achBankAccount":{
+               "routingNumber":"524871232"
+            },
+            "address":{
+               "street":"2600 Michelson Drive",
+               "street2":"Suite 1600",
+               "city":"California",
+               "state":"CA",
+               "country":"US",
+               "zip":"90201"
+            },
+            "businessDetails":[
+               {
+                  "tradeName":"Good Office Services US",
+                  "tradeAddress":{
+                     "street":"2600 Michelson Drive",
+                     "street2":"Suite 1600",
+                     "city":"California",
+                     "state":"CA",
+                     "country":"US",
+                     "zip":"90201"
+                  },
+                  "category":"ACCT",
+                  "website":"https://www.merchantofpaysafeus.com",
+                  "phoneNumber":{
+                     "countryCode":"+1",
+                     "number":"9090909091"
+                  },
+                  "email":"supportgoodofficeus@gmail.com",
+                  "accounts":[
+                     {
+                        "name":"CARD USD Account1",
+                        "paymentType":"CARD",
+                        "currency":"USD",
+                        "settlementCurrency":"USD",
+                        "statementDescriptor":{
+                           "descriptor":"descriptor",
+                           "phone":"8932223111"
+                        },
+                        "terminalType":"ECOM"
+                     }
+                  ],
+                  "contacts":[
+                     {
+                        "firstName":"Good",
+                        "lastName":"Human",
+                        "phoneNumber":{
+                           "countryCode":"+1",
+                           "number":"9090909090"
+                        },
+                        "email":"goodhuman@goodoffice.com"
+                     }
+                  ]
+               }
+            ],
+            "principals":[
+               {
+                  "isApplicant":true,
+                  "isControlProng":true,
+                  "firstName":"Sophie",
+                  "lastName":"Hosoinon1",
+                  "dateOfBirth":{
+                     "day":28,
+                     "month":2,
+                     "year":1984
+                  },
+                  "positionInCompany":"Chairman",
+                  "type":"OWNER",
+                  "address":{
+                     "street":"2600 Michelson Drive",
+                     "street2":"Suite 1600",
+                     "city":"California",
+                     "state":"CA",
+                     "country":"US",
+                     "zip":"90201"
+                  }
+               }
+            ]
+         },
+         "termsVersion":[
+            {
+               "region":"US",
+               "ccAddendum":"10.1"
+            }
+         ]
+      }
+   ],
+   "errors":[
+      {
+         "field":"applications[0].onboardingConfigId",
+         "error":"Provided terms version didn't match with terms version from configuration"
+      }
+   ]
+}
+
+
+
+## Get Application Batch by Merchant Reference Number  [/v1/applicationbatches?merchantRefNum=<merchantRefNumber>]
+
+### Get Application Batch by Merchant Reference Number (Without Error) [GET /v1/applicationbatches?merchantRefNum=976559030]
+
++ content here
+
++ Parameters
+    + merchantRefNumber: `976559030` (string, required) - This is the .
+    
++ Request (application/json)
+
+Do not supply a request body for this method.            
+
++ Response 201 (application/json) - Get Application Batch by Merchant Reference Number without Errors
+
+    + Body
+    
+
+            {
+              "batchId": "a120530f-6684-4066-9740-4dc1023c07f8",
+              "merchantRefNum": "604207874",
+              "applications": [
+                {
+                  "id": "248247365",
+                  "type": "INITIAL_APPLICATION",
+                  "merchantRefNum": "1604207874",
+                  "onboardingConfigId": "109774",
+                  "locale": "en",
+                  "acceptTermsAndConditions": true,
+                  "submit": true,
+                  "batchId": "a120530f-6684-4066-9740-4dc1023c07f8",
+                  "status": "APPROVED",
+                  "statusReasonCode": "AUTO_DECISION",
+                  "businessLegalEntity": {
+                    "id": "30a6da39-12f0-49d1-a6df-03df9a229b83",
+                    "type": "LLC",
+                    "legalName": "Good Guy INC US",
+                    "taxIdentificationNumber": "987654321",
+                    "description": "abc",
+                    "address": {
+                      "street": "2600 Michelson Drive",
+                      "street2": "Suite 1600",
+                      "city": "California",
+                      "state": "CA",
+                      "country": "US",
+                      "zip": "90201"
+                    },
+                    "businessDetails": [
+                      {
+                        "id": "f0a15493-6833-48fb-867e-4155df401f54",
+                        "tradeName": "Good Office Services US",
+                        "tradeAddress": {
+                          "street": "2600 Michelson Drive",
+                          "street2": "Suite 1600",
+                          "city": "California",
+                          "state": "CA",
+                          "country": "US",
+                          "zip": "90201"
+                        },
+                        "category": "ACCT",
+                        "website": "https://www.merchantofpaysafeus.com",
+                        "phoneNumber": {
+                          "countryCode": "+1",
+                          "number": "9090909091"
+                        },
+                        "email": "supportgoodofficeus@gmail.com",
+                        "accounts": [
+                          {
+                            "id": "1004967140",
+                            "name": "CARD USD Account1",
+                            "paymentType": "CARD",
+                            "currency": "USD",
+                            "settlementCurrency": "USD",
+                            "statementDescriptor": {
+                              "descriptor": "descriptor",
+                              "phone": "8932223111"
+                            },
+                            "terminalType": "ECOM",
+                            "users": [
+                              {
+                                "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741a",
+                                "loginName": "bleusername6042078741a"
+                              },
+                              {
+                                "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741b",
+                                "loginName": "bleusername6042078741b"
+                              },
+                              {
+                                "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741c",
+                                "loginName": "bleusername6042078741c"
+                              },
+                              {
+                                "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741d",
+                                "loginName": "bleusername6042078741d"
+                              },
+                              {
+                                "id": "90270633-0a37-4ba2-9937-e23649756988",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741e",
+                                "loginName": "bleusername6042078741e"
+                              }
+                            ],
+                            "achBankAccount": {
+                              "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                              "lastDigits": "38",
+                              "routingNumber": "524871232"
+                            }
+                          },
+                          {
+                            "id": "1004967290",
+                            "name": "CARD USD Account1",
+                            "paymentType": "CARD",
+                            "currency": "USD",
+                            "settlementCurrency": "USD",
+                            "statementDescriptor": {
+                              "descriptor": "descriptor",
+                              "phone": "8932223111"
+                            },
+                            "terminalType": "ECOM",
+                            "users": [
+                              {
+                                "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741a",
+                                "loginName": "bleusername6042078741a"
+                              },
+                              {
+                                "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741b",
+                                "loginName": "bleusername6042078741b"
+                              },
+                              {
+                                "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741c",
+                                "loginName": "bleusername6042078741c"
+                              },
+                              {
+                                "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741d",
+                                "loginName": "bleusername6042078741d"
+                              },
+                              {
+                                "id": "90270633-0a37-4ba2-9937-e23649756988",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741e",
+                                "loginName": "bleusername6042078741e"
+                              }
+                            ],
+                            "achBankAccount": {
+                              "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                              "lastDigits": "38",
+                              "routingNumber": "524871232"
+                            }
+                          },
+                          {
+                            "id": "1004967430",
+                            "name": "CARD USD Account1",
+                            "paymentType": "CARD",
+                            "currency": "USD",
+                            "settlementCurrency": "USD",
+                            "statementDescriptor": {
+                              "descriptor": "descriptor",
+                              "phone": "8932223111"
+                            },
+                            "terminalType": "ECOM",
+                            "users": [
+                              {
+                                "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741a",
+                                "loginName": "bleusername6042078741a"
+                              },
+                              {
+                                "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741b",
+                                "loginName": "bleusername6042078741b"
+                              },
+                              {
+                                "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741c",
+                                "loginName": "bleusername6042078741c"
+                              },
+                              {
+                                "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741d",
+                                "loginName": "bleusername6042078741d"
+                              },
+                              {
+                                "id": "90270633-0a37-4ba2-9937-e23649756988",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741e",
+                                "loginName": "bleusername6042078741e"
+                              }
+                            ],
+                            "achBankAccount": {
+                              "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                              "lastDigits": "38",
+                              "routingNumber": "524871232"
+                            }
+                          },
+                          {
+                            "id": "1004967540",
+                            "name": "CARD USD Account1",
+                            "paymentType": "CARD",
+                            "currency": "USD",
+                            "settlementCurrency": "USD",
+                            "statementDescriptor": {
+                              "descriptor": "descriptor",
+                              "phone": "8932223111"
+                            },
+                            "terminalType": "ECOM",
+                            "users": [
+                              {
+                                "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741a",
+                                "loginName": "bleusername6042078741a"
+                              },
+                              {
+                                "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741b",
+                                "loginName": "bleusername6042078741b"
+                              },
+                              {
+                                "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741c",
+                                "loginName": "bleusername6042078741c"
+                              },
+                              {
+                                "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741d",
+                                "loginName": "bleusername6042078741d"
+                              },
+                              {
+                                "id": "90270633-0a37-4ba2-9937-e23649756988",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741e",
+                                "loginName": "bleusername6042078741e"
+                              }
+                            ],
+                            "achBankAccount": {
+                              "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                              "lastDigits": "38",
+                              "routingNumber": "524871232"
+                            }
+                          },
+                          {
+                            "id": "1004967640",
+                            "name": "CARD USD Account1",
+                            "paymentType": "CARD",
+                            "currency": "USD",
+                            "settlementCurrency": "USD",
+                            "statementDescriptor": {
+                              "descriptor": "descriptor",
+                              "phone": "8932223111"
+                            },
+                            "terminalType": "ECOM",
+                            "users": [
+                              {
+                                "id": "646a6568-8f65-4973-979e-d9c8b0b2cd9e",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741a",
+                                "loginName": "bleusername6042078741a"
+                              },
+                              {
+                                "id": "98ff19e5-f1a0-4347-8a0e-9e06095f4b69",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741b",
+                                "loginName": "bleusername6042078741b"
+                              },
+                              {
+                                "id": "a3730d20-0f36-44b0-84e5-996c7fa4ad8d",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741c",
+                                "loginName": "bleusername6042078741c"
+                              },
+                              {
+                                "id": "17768dbe-9ba0-4525-8f39-0455ec4e9040",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741d",
+                                "loginName": "bleusername6042078741d"
+                              },
+                              {
+                                "id": "90270633-0a37-4ba2-9937-e23649756988",
+                                "email": "bleemail604207874@gmail.com",
+                                "fullName": "bleusername6042078741e",
+                                "loginName": "bleusername6042078741e"
+                              }
+                            ],
+                            "achBankAccount": {
+                              "id": "4d18b869-7190-4f32-b0e3-3ab5bf1f6c76",
+                              "lastDigits": "38",
+                              "routingNumber": "524871232"
+                            }
+                          }
+                        ],
+                        "contacts": [
+                          {
+                            "id": "ab4fa869-77f6-4cea-9149-07a584167fb3",
+                            "firstName": "Good",
+                            "lastName": "Human1",
+                            "phoneNumber": {
+                              "countryCode": "+1",
+                              "number": "9090909090"
+                            },
+                            "email": "goodhuman@goodoffice.com"
+                          },
+                          {
+                            "id": "7ef99ef7-867b-48c6-a85d-54b9a55e400f",
+                            "firstName": "Good",
+                            "lastName": "Human1",
+                            "phoneNumber": {
+                              "countryCode": "+1",
+                              "number": "9090909090"
+                            },
+                            "email": "goodhuman@goodoffice.com"
+                          },
+                          {
+                            "id": "5da5bb43-3f6b-482c-8f75-d35754e4a4f4",
+                            "firstName": "Good",
+                            "lastName": "Human1",
+                            "phoneNumber": {
+                              "countryCode": "+1",
+                              "number": "9090909090"
+                            },
+                            "email": "goodhuman@goodoffice.com"
+                          },
+                          {
+                            "id": "94ade9f0-88a7-49d6-aec1-ffc1fd88545c",
+                            "firstName": "Good",
+                            "lastName": "Human1",
+                            "phoneNumber": {
+                              "countryCode": "+1",
+                              "number": "9090909090"
+                            },
+                            "email": "goodhuman@goodoffice.com"
+                          },
+                          {
+                            "id": "7c4cc663-358c-46b9-b3a1-85108ae31dac",
+                            "firstName": "Good",
+                            "lastName": "Human1",
+                            "phoneNumber": {
+                              "countryCode": "+1",
+                              "number": "9090909090"
+                            },
+                            "email": "goodhuman@goodoffice.com"
+                          }
+                        ]
+                      }
+                    ],
+                    "principals": [
+                      {
+                        "id": "69d9b928-58e2-4a72-97f1-ffd5ff8d23d9",
+                        "isApplicant": true,
+                        "isControlProng": true,
+                        "firstName": "Sophie",
+                        "lastName": "Hosoinon1",
+                        "dateOfBirth": {
+                          "day": 28,
+                          "month": 2,
+                          "year": 1984
+                        },
+                        "ssnLastFour": "2234",
+                        "positionInCompany": "Chairman",
+                        "type": "OWNER",
+                        "address": {
+                          "street": "2600 Michelson Drive",
+                          "street2": "Suite 1600",
+                          "city": "California",
+                          "state": "CA",
+                          "country": "US",
+                          "zip": "90201"
+                        }
+                      },
+                      {
+                        "id": "2f0b72a9-6a89-4ce3-a218-efd83bda269b",
+                        "isApplicant": false,
+                        "isControlProng": false,
+                        "firstName": "Sophie",
+                        "lastName": "Hosoinon2",
+                        "dateOfBirth": {
+                          "day": 28,
+                          "month": 2,
+                          "year": 1984
+                        },
+                        "ssnLastFour": "2234",
+                        "positionInCompany": "Chairman",
+                        "type": "OWNER",
+                        "address": {
+                          "street": "2600 Michelson Drive",
+                          "street2": "Suite 1600",
+                          "city": "California",
+                          "state": "CA",
+                          "country": "US",
+                          "zip": "90201"
+                        }
+                      },
+                      {
+                        "id": "2d51d504-c34b-4972-8c6d-14af5169ef64",
+                        "isApplicant": false,
+                        "isControlProng": false,
+                        "firstName": "Sophie",
+                        "lastName": "Hosoinon3",
+                        "dateOfBirth": {
+                          "day": 28,
+                          "month": 2,
+                          "year": 1984
+                        },
+                        "ssnLastFour": "2234",
+                        "positionInCompany": "Chairman",
+                        "type": "OWNER",
+                        "address": {
+                          "street": "2600 Michelson Drive",
+                          "street2": "Suite 1600",
+                          "city": "California",
+                          "state": "CA",
+                          "country": "US",
+                          "zip": "90201"
+                        }
+                      },
+                      {
+                        "id": "ba76cd7a-d810-4615-8c1e-71fb3b3ec488",
+                        "isApplicant": false,
+                        "isControlProng": false,
+                        "firstName": "Sophie",
+                        "lastName": "Hosoinon4",
+                        "dateOfBirth": {
+                          "day": 28,
+                          "month": 2,
+                          "year": 1984
+                        },
+                        "ssnLastFour": "2234",
+                        "positionInCompany": "Chairman",
+                        "type": "OWNER",
+                        "address": {
+                          "street": "2600 Michelson Drive",
+                          "street2": "Suite 1600",
+                          "city": "California",
+                          "state": "CA",
+                          "country": "US",
+                          "zip": "90201"
+                        }
+                      },
+                      {
+                        "id": "a51e39a3-f41d-4784-9104-681bc86e6eba",
+                        "isApplicant": false,
+                        "isControlProng": false,
+                        "firstName": "Sophie",
+                        "lastName": "Hosoinon5",
+                        "dateOfBirth": {
+                          "day": 28,
+                          "month": 2,
+                          "year": 1984
+                        },
+                        "ssnLastFour": "2234",
+                        "positionInCompany": "Chairman",
+                        "type": "OWNER",
+                        "address": {
+                          "street": "2600 Michelson Drive",
+                          "street2": "Suite 1600",
+                          "city": "California",
+                          "state": "CA",
+                          "country": "US",
+                          "zip": "90201"
+                        }
+                      }
+                    ]
+                  },
+                  "termsVersion": [
+                    {
+                      "region": "US",
+                      "termsAndConditions": "10.1"
+                    }
+                  ]
+                }
+              ]
+            }
+            
+
+### Get Application Batch by Merchant Reference Number (With Error) [GET /v1/applicationbatches?merchantRefNum=976559030]
+
++ content here
+
++ Parameters
+    + merchantRefNumber: `976559030` (string, required) - This is the .
+    
++ Request (application/json)
+
+Do not supply a request body for this method.            
+
++ Response 201 (application/json) - Get Application Batch by Merchant Reference Number with Errors
+
+    + Body
+
+    
+            {
+            "batchId": "ec8e0615-9057-4075-9abb-14a3c65530d6",
+            "merchantRefNum": "976559030",
+            "applications": [
+                {
+                    "merchantRefNum": "1976559030",
+                    "onboardingConfigId": "109774",
+                    "acceptTermsAndConditions": true,
+                    "submit": true,
+                    "businessLegalEntity": {
+                        "type": "LLC",
+                        "legalName": "Good Guy INC US",
+                        "taxIdentificationNumber": "987654321",
+                        "users": [
+                            {
+                                "email": "bleemail976559030@gmail.com",
+                                "fullName": "bleusername9765590301",
+                                "loginName": "bleusername9765590301"
+                            }
+                        ],
+                        "achBankAccount": {
+                            "routingNumber": "524871232"
+                        },
+                        "address": {
+                            "street": "2600 Michelson Drive",
+                            "street2": "Suite 1600",
+                            "city": "California",
+                            "state": "CA",
+                            "country": "US",
+                            "zip": "90201"
+                        },
+                        "businessDetails": [
+                            {
+                                "tradeName": "Good Office Services US",
+                                "tradeAddress": {
+                                    "street": "2600 Michelson Drive",
+                                    "street2": "Suite 1600",
+                                    "city": "California",
+                                    "state": "CA",
+                                    "country": "US",
+                                    "zip": "90201"
+                                },
+                                "category": "ACCT",
+                                "website": "https://www.merchantofpaysafeus.com",
+                                "phoneNumber": {
+                                    "countryCode": "+1",
+                                    "number": "9090909091"
+                                },
+                                "email": "supportgoodofficeus@gmail.com",
+                                "accounts": [
+                                    {
+                                        "name": "CARD USD Account1",
+                                        "paymentType": "CARD",
+                                        "currency": "USD",
+                                        "settlementCurrency": "USD",
+                                        "statementDescriptor": {
+                                            "descriptor": "descriptor",
+                                            "phone": "8932223111"
+                                        },
+                                        "terminalType": "ECOM"
+                                    }
+                                ],
+                                "contacts": [
+                                    {
+                                        "firstName": "Good",
+                                        "lastName": "Human",
+                                        "phoneNumber": {
+                                            "countryCode": "+1",
+                                            "number": "9090909090"
+                                        },
+                                        "email": "goodhuman@goodoffice.com"
+                                    }
+                                ]
+                            }
+                        ],
+                        "principals": [
+                            {
+                                "isApplicant": true,
+                                "isControlProng": true,
+                                "firstName": "Sophie",
+                                "lastName": "Hosoinon1",
+                                "dateOfBirth": {
+                                    "day": 28,
+                                    "month": 2,
+                                    "year": 1984
+                                },
+                                "positionInCompany": "Chairman",
+                                "type": "OWNER",
+                                "address": {
+                                    "street": "2600 Michelson Drive",
+                                    "street2": "Suite 1600",
+                                    "city": "California",
+                                    "state": "CA",
+                                    "country": "US",
+                                    "zip": "90201"
+                                }
+                            }
+                        ]
+                    },
+                    "termsVersion": [
+                        {
+                            "region": "US",
+                            "ccAddendum": "10.1"
+                        }
+                    ]
+                }
+            ],
+            "errors": [
+                {
+                    "field": "applications[0].onboardingConfigId",
+                    "error": "Provided terms version didn't match with terms version from configuration"
+                }
+            ]
+        }
+        
+        
+
+## Submit Batch [/merchantonboarding/v1/applicationbatches]
+
+### Submit Batch [POST /merchantonboarding/v1/applicationbatches]
+
++ content here
+
++ Parameters
+    + merchantRefNumber: `976559030` (string, required) - This is the
+    + application:
+    
++ Request (application/json)
+
+    {
+      "merchantRefNum": "12311112",
+      "applications": [
+        {
+          "name": "name",
+          "merchantRefNum": "1231111",
+          "onboardingConfigId": "221444",
+          "locale": "en_us",
+          "metaData": null,
+          "submit": true,
+          "statusReason": null,
+          "businessLegalEntity": {
+            "type": "LTD",
+            "legalName": "{{legal_name}}",
+            "registrationNumber": "F01011",
+            "taxIdentificationNumber": "TAX123456",
+            "description": "Diesel motors and vehicles",
+            "users": [
+          {
+            "email": "{{bleemail}}",
+            "fullName": "{{bleusername}}",
+            "loginName": "{{bleusername}}",
+            "password": "Pwd1234!"
+          }
+        ],
+        "achBankAccount": null,
+        "bacsBankAccount": null,
+        "sepaBankAccount": null,
+        "wireBankAccount": null,
+        "eftBankAccount": null,
+        "address": {
+          "street": "2600 Michelson Drive",
+          "street2": "Suite 1600",
+          "city": "Irvine",
+          "state": "CA",
+          "country": "ES",
+          "zip": "92612"
+        },
+        "businessDetails": [
+          {
+            "tradeName": "Good Office Services USA",
+            "tradeAddress": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "ES",
+              "zip": "92612"
+            },
+            "category": "ACCT",
+            "mcc": null,
+            "website": "https://goodoffice.us",
+            "phoneNumber": {
+              "countryCode": "+1",
+              "number": "9090909090"
+            },
+            "email": "support@goodoffice.us",
+            "users": [
+              {
+                "email": "{{bdemail}}",
+                "fullName": "{{bdusername}}",
+                "loginName": "{{bdusername}}",
+                "password": "Pwd1234!",
+                "status": null
+              }
+            ],
+            "achBankAccount": null,
+            "bacsBankAccount": null,
+            "sepaBankAccount": null,
+            "wireBankAccount": null,
+            "eftBankAccount": null,
+            "accounts": [
+              {
+                "name": "CARD USD Account",
+                "type": "MERCHANT",
+                "paymentType": "CARD",
+                "currency": "GBP",
+                "settlementCurrency": "GBP",
+                "statementDescriptor": {
+                  "descriptor": "Good Office Services",
+                  "phone": "9090909090"
+                },
+                "terminalType": "ECOM",
+                "cardTypes": [
+                  "VI",
+                  "MC"
+                ],
+                "processingOptions": [
+                  {
+                    "cardType": "AM",
+                    "mid": "454545",
+                    "tids": [
+                      "2221",
+                      "333233"
+                    ]
+                  }
+                ],
+                "users": [
+                  {
+                    "email": "{{acctemail}}",
+                    "fullName": "{{acctusername}}",
+                    "loginName": "{{acctusername}}",
+                    "password": "Pwd1234!"
+                  }
+                ],
+                "achBankAccount": null,
+                "bacsBankAccount": {
+                  "accountNumber": "94001521",
+                  "beneficiaryAccountName": "Main",
+                  "beneficiaryBankCountry": "GB",
+                  "sortCode": "857412"
+                },
+                "sepaBankAccount": null,
+                "wireBankAccount": null,
+                "eftBankAccount": null
+              }
+            ],
+            "contacts": [
+              {
+                "type": "SALES",
+                "title": "Mr",
+                "firstName": "Good",
+                "lastName": "Human",
+                "middleName": "Ok",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.us"
+              }
+            ]
+          }
+        ],
+        "principals": [
+          {
+            "title": "Mr",
+            "firstName": "Susumumu",
+            "lastName": "Hosoinon",
+            "middleName": null,
+            "previousLastName": null,
+            "dateOfBirth": {
+              "day": "28",
+              "month": "02",
+              "year": "1984"
+            },
+            "ssn": "123456789",
+            "sin": null,
+            "positionInCompany": "Chairman",
+            "percentageShareholding": 40,
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "US",
+              "zip": "92612"
+            },
+            "ubo": false,
+            "applicant": false
+          }
+        ]
+      }
+    },
+    {
+      "name": null,
+      "merchantRefNum": "123243",
+      "onboardingConfigId": "221444",
+      "locale": "en_us",
+      "metaData": null,
+      "submit": true,
+      "statusReason": null,
+      "businessLegalEntity": {
+        "type": "LTD",
+        "legalName": "{{legal_name1}}",
+        "registrationNumber": "F01011",
+        "taxIdentificationNumber": "TAX123456",
+        "description": "Diesel motors and vehicles",
+        "users": [
+          {
+            "email": "{{bleemail1}}",
+            "fullName": "{{bleusername1}}",
+            "loginName": "{{bleusername1}}",
+            "password": "Pwd1234!"
+          }
+        ],
+        "achBankAccount": null,
+        "bacsBankAccount": null,
+        "sepaBankAccount": null,
+        "wireBankAccount": null,
+        "eftBankAccount": null,
+        "address": {
+          "street": "2600 Michelson Drive",
+          "street2": "Suite 1600",
+          "city": "Irvine",
+          "state": "CA",
+          "country": "ES",
+          "zip": "92612"
+        },
+        "businessDetails": [
+          {
+            "tradeName": "Good Office Services USA",
+            "tradeAddress": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "ES",
+              "zip": "92612"
+            },
+            "category": "ACCT",
+            "mcc": null,
+            "website": "https://goodoffice.us",
+            "phoneNumber": {
+              "countryCode": "+1",
+              "number": "9090909090"
+            },
+            "email": "support@goodoffice.us",
+            "users": [
+              {
+                "email": "{{bdemail1}}",
+                "fullName": "{{bdusername1}}",
+                "loginName": "{{bdusername1}}",
+                "password": "Pwd1234!",
+                "status": null
+              }
+            ],
+            "achBankAccount": null,
+            "bacsBankAccount": null,
+            "sepaBankAccount": null,
+            "wireBankAccount": null,
+            "eftBankAccount": null,
+            "accounts": [
+              {
+                "name": "CARD USD Account",
+                "type": "MERCHANT",
+                "paymentType": "CARD",
+                "currency": "GBP",
+                "settlementCurrency": "GBP",
+                "statementDescriptor": {
+                  "descriptor": "Good Office Services",
+                  "phone": "9090909090"
+                },
+                "terminalType": "ECOM",
+                "cardTypes": [
+                  "VI",
+                  "MC"
+                ],
+                "processingOptions": [
+                  {
+                    "cardType": "AM",
+                    "mid": "454545",
+                    "tids": [
+                      "2221",
+                      "333233"
+                    ]
+                  }
+                ],
+                "users": [
+                  {
+                    "email": "{{acctemail1}}",
+                    "fullName": "{{acctusername1}}",
+                    "loginName": "{{acctusername1}}",
+                    "password": "Pwd1234!"
+                  }
+                ],
+                "achBankAccount": null,
+                "bacsBankAccount": {
+                  "accountNumber": "94001521",
+                  "beneficiaryAccountName": "Main",
+                  "beneficiaryBankCountry": "GB",
+                  "sortCode": "857412"
+                },
+                "sepaBankAccount": null,
+                "wireBankAccount": null,
+                "eftBankAccount": null
+              }
+            ],
+            "contacts": [
+              {
+                "type": "SALES",
+                "title": "Mr",
+                "firstName": "Good",
+                "lastName": "Human",
+                "middleName": "Ok",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.us"
+              }
+            ]
+          }
+        ],
+        "principals": [
+          {
+            "title": "Mr",
+            "firstName": "Susumumu",
+            "lastName": "Hosoinon",
+            "middleName": null,
+            "previousLastName": null,
+            "dateOfBirth": {
+              "day": "28",
+              "month": "02",
+              "year": "1984"
+            },
+            "ssn": "123456789",
+            "sin": null,
+            "positionInCompany": "Chairman",
+            "percentageShareholding": 40,
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "US",
+              "zip": "92612"
+            },
+            "ubo": false,
+            "applicant": false
+          }
+        ]
+      }
+    }
+  ]
+}
+
++ Response 201 (application/json)
+
+    + Body
+
+        {
+          "merchantRefNum": "12311112",
+           "batchId": "81c67e4f-0358-4360-8fcc-f2fcd47f9e3b",
+        }
