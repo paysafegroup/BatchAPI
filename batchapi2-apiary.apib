@@ -3,7 +3,7 @@ HOST: https://api.test.paysafe.com/cardpayments/
 
 # Paysafe Batch API
 
-This API helps to batch your queries against merchant account payments.
+This API helps to batch your queries against merchant account payments with Batch Id and Merchant Reference Number.
 
 # Release Notes
 
@@ -78,7 +78,7 @@ For example:
 ### Get Application Batch by Id (Without Errors)[GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
 
 + Parameters
-    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the .
+    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this batchid.
     
 + Request (application/json)
 
@@ -567,7 +567,7 @@ Do not supply a request body for this method.
 ### Get Application Batch by Id (With Errors)[GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
 
 + Parameters
-    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the .
+    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this batchid.
     
 + Request (application/json)
 
@@ -699,7 +699,7 @@ Do not supply a request body for this method.
 ### Get Application Batch by Merchant Reference Number (Without Error) [GET /v1/applicationbatches?merchantRefNum=976559030]
 
 + Parameters
-    + merchantRefNumber: `976559030` (string, required) - This is the .
+    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
     
 + Request (application/json)
 
@@ -1191,7 +1191,7 @@ Do not supply a request body for this method.
 ### Get Application Batch by Merchant Reference Number (With Error) [GET /v1/applicationbatches?merchantRefNum=976559030]
 
 + Parameters
-    + merchantRefNumber: `976559030` (string, required) - This is the .
+    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
     
 + Request (application/json)
 
@@ -1324,9 +1324,9 @@ Do not supply a request body for this method.
 ### Submit Batch [POST /merchantonboarding/v1/applicationbatches]
 
 + Parameters
-    + merchantRefNumber: `976559030` (string, required) - This is the
-    + application:
-    
+    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
+    + applicationbatch: Application batch specify a set of steps and their execution order.
+
 + Request (application/json)
 
     {
