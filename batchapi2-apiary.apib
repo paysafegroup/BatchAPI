@@ -79,6 +79,116 @@ For example:
 |5068           |Either you submitted a request that is missing a mandatory field or the value of a field does not match the format expected.         |
 |___            |Provided terms version didn't match with terms version from configuration.|
 
+## Mandatory Fields
+
+|Field|Validation|Description|
+|---                   |---                       |---   |
+|account.currency|Not Null|
+|account.paymentType|Not Null|
+|account.settlementCurrency|Not Null|
+|account.statementDescriptor|Not Null|
+|address.city|Not Blank|
+|address.city|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.city|Not Null|
+|address.country|Not Null|
+|address.state|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.state|01 to 40|
+|address.state|Not Null|
+|address.street|Not Blank|
+|address.street|02 to 50|
+|address.street|Not Null|
+|address.street|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.street2|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.street2|02 to 50|
+|address.zip|Not Null|
+|address.zip|Not Blank|
+|application.acceptTermsAndConditions|Not Null|
+|application.acceptTermsAndConditions|Assert True|
+|application.businessLegalEntity|Not Null|
+|application.merchantRefNum|Not Blank|
+|application.onboardingConfigId|Not Blank|
+|application.users|Not Empty|
+|bacsBankAccount.accountNumber|Not Blank|
+|bacsBankAccount.beneficiaryAccountName|Not Blank|
+|bacsBankAccount.beneficiaryBankCountry|Not Null|
+|bacsBankAccount.sortCode|[\\d]{6}|
+|bacsBankAccount.sortCode|Not Blank|
+|businessDetails.accounts|Not Empty|
+|businessDetails.category|Not Null|
+|businessDetails.id|Not Null|
+|businessLegalEntity.address|Not Null|
+|businessLegalEntity.businessDetails|Not Empty|
+|businessLegalEntity.description|Not Null|
+|businessLegalEntity.description|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|businessLegalEntity.description|02 to 255|Length Allowed|
+|businessLegalEntity.id|Not Null|
+|businessLegalEntity.legalName|Not Blank|
+|businessLegalEntity.principals|Not Empty|
+|businessLegalEntity.registrationNumber|05 to 10|Length Allowed|
+|businessLegalEntity.sanctionsConsent|Not Null|
+|businessLegalEntity.taxIdentificationNumber|\\d{9}|
+|businessLegalEntity.taxIdentificationNumber|Not Blank|
+|businessLegalEntity.type|Not Null|
+|contact.email|Not Null|
+|contact.firstName|Not Blank|
+|contact.firstName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|contact.firstName|Not Null|
+|contact.firstName|01 to 25|
+|contact.lastName|01 to 25|
+|contact.lastName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|contact.middleName|01 to 25|
+|contact.middleName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.address|Not Null|
+|principal.dateOfBirth|Not Null|
+|principal.firstName|Not Blank|
+|principal.firstName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.firstName|01 to 25|Length Allowed|
+|principal.firstName|Not Null|
+|principal.lastName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.lastName|01 to 25|Length Allowed|
+|principal.lastName|Not Blank|
+|principal.middleName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.middleName|01 to 25|Length Allowed|
+|principal.positionInCompany|Not Blank|
+|principal.previousLastName|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.previousLastName|01 to 25|Length Allowed|
+|principal.title|(Mr.|Ms.|Mrs.)|
+|sanctionsConsent.complaint|Not Null|
+|sanctionsConsent.justification|5 to 2000|Length Allowed|
+|sepaBankAccount.beneficiaryAccountName|Not Blank|
+|sepaBankAccount.beneficiaryBankCountry|Not Null|
+|sepaBankAccount.ibanNumber|Not Blank|
+|sepaBankAccount.swiftNumber|Not Blank|
+|statementDescriptor.descriptor|1 to 20|Length Allowed|
+|statementDescriptor.descriptor|Not Empty|
+|statementDescriptor.phone|1 to 13|Length Allowed|
+|statementDescriptor.phone|Not Empty|
+|user.email|Not Null|
+|user.email|Not Blank|
+|user.loginName|Not Blank|
+|user.loginName|^([a-z]+[a-z0-9._-]*)$|
+|user.loginName|Not Null|
+|user.password|.*[A-Z].*|Must contain at least 1 uppercase letter|
+|user.password|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|user.password|Not Blank|
+|user.password|.*[a-z].*|Must contain at least 1 lowercase letter|
+|user.password|Not Null|
+|user.password|.*\\d.*|Must contain at least 1 number|
+|wireBankAccount.beneficiaryAccountName|Not Blank|
+|wireBankAccount.beneficiaryAddress|Not Blank|
+|wireBankAccount.beneficiaryBankCity|Not Blank|
+|wireBankAccount.beneficiaryBankCountry|Not Null|
+|wireBankAccount.beneficiaryBankName|Not Blank|
+|wireBankAccount.beneficiaryBankPostCode|Not Blank|
+|wireBankAccount.beneficiaryBankRegion|Not Blank|
+|wireBankAccount.beneficiaryCity|Not Blank|
+|wireBankAccount.beneficiaryCountry|Not Null|
+|wireBankAccount.beneficiaryPostCode|Not Blank|
+|wireBankAccount.beneficiaryRegion|Not Blank|
+|wireBankAccount.ibanNumber|Not Blank|
+|wireBankAccount.swiftNumber|Not Blank|
+|wireBankAccount.swiftNumber|^([A-Za-z0-9]{11})$|^([A-Za-z0-9]{8})$|
+
 ## Get Application Batch by Id [/v1/applicationbatches/<batchId>]
 
 ### Get Application Batch by Id [GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
