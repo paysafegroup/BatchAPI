@@ -72,14 +72,14 @@ For example:
 | merchantRefNum       |merchantRefNum            | String                                                  |NA            |True                 |Reference Number from merchant for complete batch                    |
 | applications       |applications                | Array of Consolidated Application Object                |NA            |True                 |Array of Applications                                                |
 
-## Error Codes
+# Error Codes
 
 |Error Code     |Description|
 |---            |---|
 |5068           |Either you submitted a request that is missing a mandatory field or the value of a field does not match the format expected.         |
 |___            |Provided terms version didn't match with terms version from configuration.|
 
-## Mandatory Fields
+# Check#6Mandatory Fields
 
 |Field|Validation|Description|
 |---                   |---                       |---   |
@@ -187,7 +187,7 @@ For example:
 |wireBankAccount.beneficiaryRegion|Not Blank|
 |wireBankAccount.ibanNumber|Not Blank|
 |wireBankAccount.swiftNumber|Not Blank|
-|wireBankAccount.swiftNumber|^([A-Za-z0-9]{11})$|^([A-Za-z0-9]{8})$|
+|wireBankAccount.swiftNumber|^([A-Za-z0-9]{11})$|
 
 ## Get Application Batch by Id [/v1/applicationbatches/<batchId>]
 
