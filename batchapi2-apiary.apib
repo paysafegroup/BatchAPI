@@ -1,9 +1,9 @@
 FORMAT: 1A
-HOST: https://api.test.paysafe.com/cardpayments/
+HOST: https://api.test.paysafe.com/
 
 # Paysafe Batch API
 
-This API allow merchants to batch their queries against a payment with Batch Id and Merchant Reference Number.
+This API allow Merchants to batch their queries with Merchant Reference Number. Further, Paysafe would supply Batch ID for the given Mechant Refernce Number.
 
 # Release Notes
 
@@ -72,9 +72,125 @@ For example:
 | merchantRefNum       |merchantRefNum            | String                                                  |NA            |True                 |Reference Number from merchant for complete batch                    |
 | applications       |applications                | Array of Consolidated Application Object                |NA            |True                 |Array of Applications                                                |
 
+# Error Codes
+
+|Error Code     |Description|
+|---            |---|
+|5068           |Either you submitted a request that is missing a mandatory field or the value of a field does not match the format expected.         |
+
+# Mandatory Fields
+
+|Field|Validation|Description|
+|---                   |---                       |---   |
+|account.currency|Not Null|
+|account.paymentType|Not Null|
+|account.settlementCurrency|Not Null|
+|account.statementDescriptor|Not Null|
+|address.city|Not Blank|
+|address.city|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.city|Not Null|
+|address.country|Not Null|
+|address.state|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.state|01 to 40|
+|address.state|Not Null|
+|address.street|Not Blank|
+|address.street|02 to 50|
+|address.street|Not Null|
+|address.street|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.street2|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|address.street2|02 to 50|
+|address.zip|Not Null|
+|address.zip|Not Blank|
+|application.acceptTermsAndConditions|Not Null|
+|application.acceptTermsAndConditions|Assert True|
+|application.businessLegalEntity|Not Null|
+|application.merchantRefNum|Not Blank|
+|application.onboardingConfigId|Not Blank|
+|application.users|Not Empty|
+|bacsBankAccount.accountNumber|Not Blank|
+|bacsBankAccount.beneficiaryAccountName|Not Blank|
+|bacsBankAccount.beneficiaryBankCountry|Not Null|
+|bacsBankAccount.sortCode|[\\d]{6}|
+|bacsBankAccount.sortCode|Not Blank|
+|businessDetails.accounts|Not Empty|
+|businessDetails.category|Not Null|
+|businessDetails.id|Not Null|
+|businessLegalEntity.address|Not Null|
+|businessLegalEntity.businessDetails|Not Empty|
+|businessLegalEntity.description|Not Null|
+|businessLegalEntity.description|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|businessLegalEntity.description|02 to 255|Length Allowed|
+|businessLegalEntity.id|Not Null|
+|businessLegalEntity.legalName|Not Blank|
+|businessLegalEntity.principals|Not Empty|
+|businessLegalEntity.registrationNumber|05 to 10|Length Allowed|
+|businessLegalEntity.sanctionsConsent|Not Null|
+|businessLegalEntity.taxIdentificationNumber|\\d{9}|
+|businessLegalEntity.taxIdentificationNumber|Not Blank|
+|businessLegalEntity.type|Not Null|
+|contact.email|Not Null|
+|contact.firstName|Not Blank|
+|contact.firstName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|contact.firstName|Not Null|
+|contact.firstName|01 to 25|
+|contact.lastName|01 to 25|
+|contact.lastName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|contact.middleName|01 to 25|
+|contact.middleName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.address|Not Null|
+|principal.dateOfBirth|Not Null|
+|principal.firstName|Not Blank|
+|principal.firstName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.firstName|01 to 25|Length Allowed|
+|principal.firstName|Not Null|
+|principal.lastName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.lastName|01 to 25|Length Allowed|
+|principal.lastName|Not Blank|
+|principal.middleName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.middleName|01 to 25|Length Allowed|
+|principal.positionInCompany|Not Blank|
+|principal.previousLastName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|principal.previousLastName|01 to 25|Length Allowed|
+|principal.title|(Mr.|Ms.|Mrs.)|
+|sanctionsConsent.complaint|Not Null|
+|sanctionsConsent.justification|5 to 2000|Length Allowed|
+|sepaBankAccount.beneficiaryAccountName|Not Blank|
+|sepaBankAccount.beneficiaryBankCountry|Not Null|
+|sepaBankAccount.ibanNumber|Not Blank|
+|sepaBankAccount.swiftNumber|Not Blank|
+|statementDescriptor.descriptor|1 to 20|Length Allowed|
+|statementDescriptor.descriptor|Not Empty|
+|statementDescriptor.phone|1 to 13|Length Allowed|
+|statementDescriptor.phone|Not Empty|
+|user.email|Not Null|
+|user.email|Not Blank|
+|user.loginName|Not Blank|
+|user.loginName|^([a-z]+[a-z0-9._-]*)$|
+|user.loginName|Not Null|
+|user.password|.*[A-Z].*|Must contain at least 1 uppercase letter|
+|user.password|^(?!\\s#7.*\\s$).*$|No Leading and Trailing Spaces are allowed|
+|user.password|Not Blank|
+|user.password|.*[a-z].*|Must contain at least 1 lowercase letter|
+|user.password|Not Null|
+|user.password|.*\\d.*|Must contain at least 1 number|
+|wireBankAccount.beneficiaryAccountName|Not Blank|
+|wireBankAccount.beneficiaryAddress|Not Blank|
+|wireBankAccount.beneficiaryBankCity|Not Blank|
+|wireBankAccount.beneficiaryBankCountry|Not Null|
+|wireBankAccount.beneficiaryBankName|Not Blank|
+|wireBankAccount.beneficiaryBankPostCode|Not Blank|
+|wireBankAccount.beneficiaryBankRegion|Not Blank|
+|wireBankAccount.beneficiaryCity|Not Blank|
+|wireBankAccount.beneficiaryCountry|Not Null|
+|wireBankAccount.beneficiaryPostCode|Not Blank|
+|wireBankAccount.beneficiaryRegion|Not Blank|
+|wireBankAccount.ibanNumber|Not Blank|
+|wireBankAccount.swiftNumber|Not Blank|
+|wireBankAccount.swiftNumber|^([A-Za-z0-9]{11})$|
+
 ## Get Application Batch by Id [/v1/applicationbatches/<batchId>]
 
-### Get Application Batch by Id (Without Errors)[GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
+### Get Application Batch by Id [GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
 
 + Parameters
     + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this batchid.
@@ -563,139 +679,9 @@ Do not supply a request body for GET method.
 }
 
 
-### Get Application Batch by Id (With Errors)[GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
-
-+ Parameters
-    + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this batchid.
-    
-+ Request (application/json)
-
-Do not supply a request body for GET method.            
-
-+ Response 201 (application/json) - Get Application Batch with Errors
-
-    + Body
-
-{
-   "batchId":"ec8e0615-9057-4075-9abb-14a3c65530d6",
-   "merchantRefNum":"976559030",
-   "applications":[
-      {
-         "merchantRefNum":"1976559030",
-         "onboardingConfigId":"109774",
-         "acceptTermsAndConditions":true,
-         "submit":true,
-         "businessLegalEntity":{
-            "type":"LLC",
-            "legalName":"Good Guy INC US",
-            "taxIdentificationNumber":"987654321",
-            "users":[
-               {
-                  "email":"bleemail976559030@gmail.com",
-                  "fullName":"bleusername9765590301",
-                  "loginName":"bleusername9765590301"
-               }
-            ],
-            "achBankAccount":{
-               "routingNumber":"524871232"
-            },
-            "address":{
-               "street":"2600 Michelson Drive",
-               "street2":"Suite 1600",
-               "city":"California",
-               "state":"CA",
-               "country":"US",
-               "zip":"90201"
-            },
-            "businessDetails":[
-               {
-                  "tradeName":"Good Office Services US",
-                  "tradeAddress":{
-                     "street":"2600 Michelson Drive",
-                     "street2":"Suite 1600",
-                     "city":"California",
-                     "state":"CA",
-                     "country":"US",
-                     "zip":"90201"
-                  },
-                  "category":"ACCT",
-                  "website":"https://www.merchantofpaysafeus.com",
-                  "phoneNumber":{
-                     "countryCode":"+1",
-                     "number":"9090909091"
-                  },
-                  "email":"supportgoodofficeus@gmail.com",
-                  "accounts":[
-                     {
-                        "name":"CARD USD Account1",
-                        "paymentType":"CARD",
-                        "currency":"USD",
-                        "settlementCurrency":"USD",
-                        "statementDescriptor":{
-                           "descriptor":"descriptor",
-                           "phone":"8932223111"
-                        },
-                        "terminalType":"ECOM"
-                     }
-                  ],
-                  "contacts":[
-                     {
-                        "firstName":"Good",
-                        "lastName":"Human",
-                        "phoneNumber":{
-                           "countryCode":"+1",
-                           "number":"9090909090"
-                        },
-                        "email":"goodhuman@goodoffice.com"
-                     }
-                  ]
-               }
-            ],
-            "principals":[
-               {
-                  "isApplicant":true,
-                  "isControlProng":true,
-                  "firstName":"Sophie",
-                  "lastName":"Hosoinon1",
-                  "dateOfBirth":{
-                     "day":28,
-                     "month":2,
-                     "year":1984
-                  },
-                  "positionInCompany":"Chairman",
-                  "type":"OWNER",
-                  "address":{
-                     "street":"2600 Michelson Drive",
-                     "street2":"Suite 1600",
-                     "city":"California",
-                     "state":"CA",
-                     "country":"US",
-                     "zip":"90201"
-                  }
-               }
-            ]
-         },
-         "termsVersion":[
-            {
-               "region":"US",
-               "ccAddendum":"10.1"
-            }
-         ]
-      }
-   ],
-   "errors":[
-      {
-         "field":"applications[0].onboardingConfigId",
-         "error":"Provided terms version didn't match with terms version from configuration"
-      }
-   ]
-}
-
-
-
 ## Get Application Batch by Merchant Reference Number  [/v1/applicationbatches?merchantRefNum=<merchantRefNumber>]
 
-### Get Application Batch by Merchant Reference Number (Without Error) [GET /v1/applicationbatches?merchantRefNum=976559030]
+### Get Application Batch by Merchant Reference Number [GET /v1/applicationbatches?merchantRefNum=976559030]
 
 + Parameters
     + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
@@ -1185,480 +1171,3 @@ Do not supply a request body for GET method.
                 }
               ]
             }
-            
-
-### Get Application Batch by Merchant Reference Number (With Error) [GET /v1/applicationbatches?merchantRefNum=976559030]
-
-+ Parameters
-    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
-    
-+ Request (application/json)
-
-Do not supply a request body for GET method.            
-
-+ Response 201 (application/json) - Get Application Batch by Merchant Reference Number with Errors
-
-    + Body
-
-    
-            {
-            "batchId": "ec8e0615-9057-4075-9abb-14a3c65530d6",
-            "merchantRefNum": "976559030",
-            "applications": [
-                {
-                    "merchantRefNum": "1976559030",
-                    "onboardingConfigId": "109774",
-                    "acceptTermsAndConditions": true,
-                    "submit": true,
-                    "businessLegalEntity": {
-                        "type": "LLC",
-                        "legalName": "Good Guy INC US",
-                        "taxIdentificationNumber": "987654321",
-                        "users": [
-                            {
-                                "email": "bleemail976559030@gmail.com",
-                                "fullName": "bleusername9765590301",
-                                "loginName": "bleusername9765590301"
-                            }
-                        ],
-                        "achBankAccount": {
-                            "routingNumber": "524871232"
-                        },
-                        "address": {
-                            "street": "2600 Michelson Drive",
-                            "street2": "Suite 1600",
-                            "city": "California",
-                            "state": "CA",
-                            "country": "US",
-                            "zip": "90201"
-                        },
-                        "businessDetails": [
-                            {
-                                "tradeName": "Good Office Services US",
-                                "tradeAddress": {
-                                    "street": "2600 Michelson Drive",
-                                    "street2": "Suite 1600",
-                                    "city": "California",
-                                    "state": "CA",
-                                    "country": "US",
-                                    "zip": "90201"
-                                },
-                                "category": "ACCT",
-                                "website": "https://www.merchantofpaysafeus.com",
-                                "phoneNumber": {
-                                    "countryCode": "+1",
-                                    "number": "9090909091"
-                                },
-                                "email": "supportgoodofficeus@gmail.com",
-                                "accounts": [
-                                    {
-                                        "name": "CARD USD Account1",
-                                        "paymentType": "CARD",
-                                        "currency": "USD",
-                                        "settlementCurrency": "USD",
-                                        "statementDescriptor": {
-                                            "descriptor": "descriptor",
-                                            "phone": "8932223111"
-                                        },
-                                        "terminalType": "ECOM"
-                                    }
-                                ],
-                                "contacts": [
-                                    {
-                                        "firstName": "Good",
-                                        "lastName": "Human",
-                                        "phoneNumber": {
-                                            "countryCode": "+1",
-                                            "number": "9090909090"
-                                        },
-                                        "email": "goodhuman@goodoffice.com"
-                                    }
-                                ]
-                            }
-                        ],
-                        "principals": [
-                            {
-                                "isApplicant": true,
-                                "isControlProng": true,
-                                "firstName": "Sophie",
-                                "lastName": "Hosoinon1",
-                                "dateOfBirth": {
-                                    "day": 28,
-                                    "month": 2,
-                                    "year": 1984
-                                },
-                                "positionInCompany": "Chairman",
-                                "type": "OWNER",
-                                "address": {
-                                    "street": "2600 Michelson Drive",
-                                    "street2": "Suite 1600",
-                                    "city": "California",
-                                    "state": "CA",
-                                    "country": "US",
-                                    "zip": "90201"
-                                }
-                            }
-                        ]
-                    },
-                    "termsVersion": [
-                        {
-                            "region": "US",
-                            "ccAddendum": "10.1"
-                        }
-                    ]
-                }
-            ],
-            "errors": [
-                {
-                    "field": "applications[0].onboardingConfigId",
-                    "error": "Provided terms version didn't match with terms version from configuration"
-                }
-            ]
-        }
-        
-        
-
-## Submit Batch [/merchantonboarding/v1/applicationbatches]
-
-### Submit Batch [POST /merchantonboarding/v1/applicationbatches]
-
-+ Parameters
-    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
-    + applications: `name": "name", "onboardingConfigId": "221444","locale": "en_us",` (string, required) - Applications specify a set of steps and their execution order.
-
-+ Request (application/json)
-
-    {
-      "merchantRefNum": "12311112",
-      "applications": [
-        {
-          "name": "name",
-          "merchantRefNum": "1231111",
-          "onboardingConfigId": "221444",
-          "locale": "en_us",
-          "metaData": null,
-          "submit": true,
-          "statusReason": null,
-          "businessLegalEntity": {
-            "type": "LTD",
-            "legalName": "{{legal_name}}",
-            "registrationNumber": "F01011",
-            "taxIdentificationNumber": "TAX123456",
-            "description": "Diesel motors and vehicles",
-            "users": [
-          {
-            "email": "{{bleemail}}",
-            "fullName": "{{bleusername}}",
-            "loginName": "{{bleusername}}",
-            "password": "Pwd1234!"
-          }
-        ],
-        "achBankAccount": null,
-        "bacsBankAccount": null,
-        "sepaBankAccount": null,
-        "wireBankAccount": null,
-        "eftBankAccount": null,
-        "address": {
-          "street": "2600 Michelson Drive",
-          "street2": "Suite 1600",
-          "city": "Irvine",
-          "state": "CA",
-          "country": "ES",
-          "zip": "92612"
-        },
-        "businessDetails": [
-          {
-            "tradeName": "Good Office Services USA",
-            "tradeAddress": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "ES",
-              "zip": "92612"
-            },
-            "category": "ACCT",
-            "mcc": null,
-            "website": "https://goodoffice.us",
-            "phoneNumber": {
-              "countryCode": "+1",
-              "number": "9090909090"
-            },
-            "email": "support@goodoffice.us",
-            "users": [
-              {
-                "email": "{{bdemail}}",
-                "fullName": "{{bdusername}}",
-                "loginName": "{{bdusername}}",
-                "password": "Pwd1234!",
-                "status": null
-              }
-            ],
-            "achBankAccount": null,
-            "bacsBankAccount": null,
-            "sepaBankAccount": null,
-            "wireBankAccount": null,
-            "eftBankAccount": null,
-            "accounts": [
-              {
-                "name": "CARD USD Account",
-                "type": "MERCHANT",
-                "paymentType": "CARD",
-                "currency": "GBP",
-                "settlementCurrency": "GBP",
-                "statementDescriptor": {
-                  "descriptor": "Good Office Services",
-                  "phone": "9090909090"
-                },
-                "terminalType": "ECOM",
-                "cardTypes": [
-                  "VI",
-                  "MC"
-                ],
-                "processingOptions": [
-                  {
-                    "cardType": "AM",
-                    "mid": "454545",
-                    "tids": [
-                      "2221",
-                      "333233"
-                    ]
-                  }
-                ],
-                "users": [
-                  {
-                    "email": "{{acctemail}}",
-                    "fullName": "{{acctusername}}",
-                    "loginName": "{{acctusername}}",
-                    "password": "Pwd1234!"
-                  }
-                ],
-                "achBankAccount": null,
-                "bacsBankAccount": {
-                  "accountNumber": "94001521",
-                  "beneficiaryAccountName": "Main",
-                  "beneficiaryBankCountry": "GB",
-                  "sortCode": "857412"
-                },
-                "sepaBankAccount": null,
-                "wireBankAccount": null,
-                "eftBankAccount": null
-              }
-            ],
-            "contacts": [
-              {
-                "type": "SALES",
-                "title": "Mr",
-                "firstName": "Good",
-                "lastName": "Human",
-                "middleName": "Ok",
-                "phoneNumber": {
-                  "countryCode": "+1",
-                  "number": "9090909090"
-                },
-                "email": "goodhuman@goodoffice.us"
-              }
-            ]
-          }
-        ],
-        "principals": [
-          {
-            "title": "Mr",
-            "firstName": "Susumumu",
-            "lastName": "Hosoinon",
-            "middleName": null,
-            "previousLastName": null,
-            "dateOfBirth": {
-              "day": "28",
-              "month": "02",
-              "year": "1984"
-            },
-            "ssn": "123456789",
-            "sin": null,
-            "positionInCompany": "Chairman",
-            "percentageShareholding": 40,
-            "address": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "US",
-              "zip": "92612"
-            },
-            "ubo": false,
-            "applicant": false
-          }
-        ]
-      }
-    },
-    {
-      "name": null,
-      "merchantRefNum": "123243",
-      "onboardingConfigId": "221444",
-      "locale": "en_us",
-      "metaData": null,
-      "submit": true,
-      "statusReason": null,
-      "businessLegalEntity": {
-        "type": "LTD",
-        "legalName": "{{legal_name1}}",
-        "registrationNumber": "F01011",
-        "taxIdentificationNumber": "TAX123456",
-        "description": "Diesel motors and vehicles",
-        "users": [
-          {
-            "email": "{{bleemail1}}",
-            "fullName": "{{bleusername1}}",
-            "loginName": "{{bleusername1}}",
-            "password": "Pwd1234!"
-          }
-        ],
-        "achBankAccount": null,
-        "bacsBankAccount": null,
-        "sepaBankAccount": null,
-        "wireBankAccount": null,
-        "eftBankAccount": null,
-        "address": {
-          "street": "2600 Michelson Drive",
-          "street2": "Suite 1600",
-          "city": "Irvine",
-          "state": "CA",
-          "country": "ES",
-          "zip": "92612"
-        },
-        "businessDetails": [
-          {
-            "tradeName": "Good Office Services USA",
-            "tradeAddress": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "ES",
-              "zip": "92612"
-            },
-            "category": "ACCT",
-            "mcc": null,
-            "website": "https://goodoffice.us",
-            "phoneNumber": {
-              "countryCode": "+1",
-              "number": "9090909090"
-            },
-            "email": "support@goodoffice.us",
-            "users": [
-              {
-                "email": "{{bdemail1}}",
-                "fullName": "{{bdusername1}}",
-                "loginName": "{{bdusername1}}",
-                "password": "Pwd1234!",
-                "status": null
-              }
-            ],
-            "achBankAccount": null,
-            "bacsBankAccount": null,
-            "sepaBankAccount": null,
-            "wireBankAccount": null,
-            "eftBankAccount": null,
-            "accounts": [
-              {
-                "name": "CARD USD Account",
-                "type": "MERCHANT",
-                "paymentType": "CARD",
-                "currency": "GBP",
-                "settlementCurrency": "GBP",
-                "statementDescriptor": {
-                  "descriptor": "Good Office Services",
-                  "phone": "9090909090"
-                },
-                "terminalType": "ECOM",
-                "cardTypes": [
-                  "VI",
-                  "MC"
-                ],
-                "processingOptions": [
-                  {
-                    "cardType": "AM",
-                    "mid": "454545",
-                    "tids": [
-                      "2221",
-                      "333233"
-                    ]
-                  }
-                ],
-                "users": [
-                  {
-                    "email": "{{acctemail1}}",
-                    "fullName": "{{acctusername1}}",
-                    "loginName": "{{acctusername1}}",
-                    "password": "Pwd1234!"
-                  }
-                ],
-                "achBankAccount": null,
-                "bacsBankAccount": {
-                  "accountNumber": "94001521",
-                  "beneficiaryAccountName": "Main",
-                  "beneficiaryBankCountry": "GB",
-                  "sortCode": "857412"
-                },
-                "sepaBankAccount": null,
-                "wireBankAccount": null,
-                "eftBankAccount": null
-              }
-            ],
-            "contacts": [
-              {
-                "type": "SALES",
-                "title": "Mr",
-                "firstName": "Good",
-                "lastName": "Human",
-                "middleName": "Ok",
-                "phoneNumber": {
-                  "countryCode": "+1",
-                  "number": "9090909090"
-                },
-                "email": "goodhuman@goodoffice.us"
-              }
-            ]
-          }
-        ],
-        "principals": [
-          {
-            "title": "Mr",
-            "firstName": "Susumumu",
-            "lastName": "Hosoinon",
-            "middleName": null,
-            "previousLastName": null,
-            "dateOfBirth": {
-              "day": "28",
-              "month": "02",
-              "year": "1984"
-            },
-            "ssn": "123456789",
-            "sin": null,
-            "positionInCompany": "Chairman",
-            "percentageShareholding": 40,
-            "address": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "US",
-              "zip": "92612"
-            },
-            "ubo": false,
-            "applicant": false
-          }
-        ]
-      }
-    }
-  ]
-}
-
-+ Response 201 (application/json)
-
-    + Body
-
-        {
-          "merchantRefNum": "12311112",
-           "batchId": "81c67e4f-0358-4360-8fcc-f2fcd47f9e3b",
-        }
