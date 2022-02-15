@@ -213,6 +213,352 @@ For example:
 |wireBankAccount.swiftNumber|Not Blank|
 |wireBankAccount.swiftNumber|^([A-Za-z0-9]{11})$|
 
+## Submit Batch [/merchantonboarding/v1/applicationbatches]
+
+### Submit Batch [POST /merchantonboarding/v1/applicationbatches]
+
++ Parameters
+    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
+    + applications: `name": "name", "onboardingConfigId": "221444","locale": "en_us",` (string, required) - Applications specify a set of steps and their execution order.
+
++ Request (application/json)
+
+    {
+      "merchantRefNum": "12311112",
+      "applications": [
+        {
+          "name": "name",
+          "merchantRefNum": "1231111",
+          "onboardingConfigId": "221444",
+          "locale": "en_us",
+          "metaData": null,
+          "submit": true,
+          "statusReason": null,
+          "businessLegalEntity": {
+            "type": "LTD",
+            "legalName": "{{legal_name}}",
+            "registrationNumber": "F01011",
+            "taxIdentificationNumber": "TAX123456",
+            "description": "Diesel motors and vehicles",
+            "users": [
+          {
+            "email": "{{bleemail}}",
+            "fullName": "{{bleusername}}",
+            "loginName": "{{bleusername}}",
+            "password": "Pwd1234!"
+          }
+        ],
+        "achBankAccount": null,
+        "bacsBankAccount": null,
+        "sepaBankAccount": null,
+        "wireBankAccount": null,
+        "eftBankAccount": null,
+        "address": {
+          "street": "2600 Michelson Drive",
+          "street2": "Suite 1600",
+          "city": "Irvine",
+          "state": "CA",
+          "country": "ES",
+          "zip": "92612"
+        },
+        "businessDetails": [
+          {
+            "tradeName": "Good Office Services USA",
+            "tradeAddress": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "ES",
+              "zip": "92612"
+            },
+            "category": "ACCT",
+            "mcc": null,
+            "website": "https://goodoffice.us",
+            "phoneNumber": {
+              "countryCode": "+1",
+              "number": "9090909090"
+            },
+            "email": "support@goodoffice.us",
+            "users": [
+              {
+                "email": "{{bdemail}}",
+                "fullName": "{{bdusername}}",
+                "loginName": "{{bdusername}}",
+                "password": "Pwd1234!",
+                "status": null
+              }
+            ],
+            "achBankAccount": null,
+            "bacsBankAccount": null,
+            "sepaBankAccount": null,
+            "wireBankAccount": null,
+            "eftBankAccount": null,
+            "accounts": [
+              {
+                "name": "CARD USD Account",
+                "type": "MERCHANT",
+                "paymentType": "CARD",
+                "currency": "GBP",
+                "settlementCurrency": "GBP",
+                "statementDescriptor": {
+                  "descriptor": "Good Office Services",
+                  "phone": "9090909090"
+                },
+                "terminalType": "ECOM",
+                "cardTypes": [
+                  "VI",
+                  "MC"
+                ],
+                "processingOptions": [
+                  {
+                    "cardType": "AM",
+                    "mid": "454545",
+                    "tids": [
+                      "2221",
+                      "333233"
+                    ]
+                  }
+                ],
+                "users": [
+                  {
+                    "email": "{{acctemail}}",
+                    "fullName": "{{acctusername}}",
+                    "loginName": "{{acctusername}}",
+                    "password": "Pwd1234!"
+                  }
+                ],
+                "achBankAccount": null,
+                "bacsBankAccount": {
+                  "accountNumber": "94001521",
+                  "beneficiaryAccountName": "Main",
+                  "beneficiaryBankCountry": "GB",
+                  "sortCode": "857412"
+                },
+                "sepaBankAccount": null,
+                "wireBankAccount": null,
+                "eftBankAccount": null
+              }
+            ],
+            "contacts": [
+              {
+                "type": "SALES",
+                "title": "Mr",
+                "firstName": "Good",
+                "lastName": "Human",
+                "middleName": "Ok",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.us"
+              }
+            ]
+          }
+        ],
+        "principals": [
+          {
+            "title": "Mr",
+            "firstName": "Susumumu",
+            "lastName": "Hosoinon",
+            "middleName": null,
+            "previousLastName": null,
+            "dateOfBirth": {
+              "day": "28",
+              "month": "02",
+              "year": "1984"
+            },
+            "ssn": "123456789",
+            "sin": null,
+            "positionInCompany": "Chairman",
+            "percentageShareholding": 40,
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "US",
+              "zip": "92612"
+            },
+            "ubo": false,
+            "applicant": false
+          }
+        ]
+      }
+    },
+    {
+      "name": null,
+      "merchantRefNum": "123243",
+      "onboardingConfigId": "221444",
+      "locale": "en_us",
+      "metaData": null,
+      "submit": true,
+      "statusReason": null,
+      "businessLegalEntity": {
+        "type": "LTD",
+        "legalName": "{{legal_name1}}",
+        "registrationNumber": "F01011",
+        "taxIdentificationNumber": "TAX123456",
+        "description": "Diesel motors and vehicles",
+        "users": [
+          {
+            "email": "{{bleemail1}}",
+            "fullName": "{{bleusername1}}",
+            "loginName": "{{bleusername1}}",
+            "password": "Pwd1234!"
+          }
+        ],
+        "achBankAccount": null,
+        "bacsBankAccount": null,
+        "sepaBankAccount": null,
+        "wireBankAccount": null,
+        "eftBankAccount": null,
+        "address": {
+          "street": "2600 Michelson Drive",
+          "street2": "Suite 1600",
+          "city": "Irvine",
+          "state": "CA",
+          "country": "ES",
+          "zip": "92612"
+        },
+        "businessDetails": [
+          {
+            "tradeName": "Good Office Services USA",
+            "tradeAddress": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "ES",
+              "zip": "92612"
+            },
+            "category": "ACCT",
+            "mcc": null,
+            "website": "https://goodoffice.us",
+            "phoneNumber": {
+              "countryCode": "+1",
+              "number": "9090909090"
+            },
+            "email": "support@goodoffice.us",
+            "users": [
+              {
+                "email": "{{bdemail1}}",
+                "fullName": "{{bdusername1}}",
+                "loginName": "{{bdusername1}}",
+                "password": "Pwd1234!",
+                "status": null
+              }
+            ],
+            "achBankAccount": null,
+            "bacsBankAccount": null,
+            "sepaBankAccount": null,
+            "wireBankAccount": null,
+            "eftBankAccount": null,
+            "accounts": [
+              {
+                "name": "CARD USD Account",
+                "type": "MERCHANT",
+                "paymentType": "CARD",
+                "currency": "GBP",
+                "settlementCurrency": "GBP",
+                "statementDescriptor": {
+                  "descriptor": "Good Office Services",
+                  "phone": "9090909090"
+                },
+                "terminalType": "ECOM",
+                "cardTypes": [
+                  "VI",
+                  "MC"
+                ],
+                "processingOptions": [
+                  {
+                    "cardType": "AM",
+                    "mid": "454545",
+                    "tids": [
+                      "2221",
+                      "333233"
+                    ]
+                  }
+                ],
+                "users": [
+                  {
+                    "email": "{{acctemail1}}",
+                    "fullName": "{{acctusername1}}",
+                    "loginName": "{{acctusername1}}",
+                    "password": "Pwd1234!"
+                  }
+                ],
+                "achBankAccount": null,
+                "bacsBankAccount": {
+                  "accountNumber": "94001521",
+                  "beneficiaryAccountName": "Main",
+                  "beneficiaryBankCountry": "GB",
+                  "sortCode": "857412"
+                },
+                "sepaBankAccount": null,
+                "wireBankAccount": null,
+                "eftBankAccount": null
+              }
+            ],
+            "contacts": [
+              {
+                "type": "SALES",
+                "title": "Mr",
+                "firstName": "Good",
+                "lastName": "Human",
+                "middleName": "Ok",
+                "phoneNumber": {
+                  "countryCode": "+1",
+                  "number": "9090909090"
+                },
+                "email": "goodhuman@goodoffice.us"
+              }
+            ]
+          }
+        ],
+        "principals": [
+          {
+            "title": "Mr",
+            "firstName": "Susumumu",
+            "lastName": "Hosoinon",
+            "middleName": null,
+            "previousLastName": null,
+            "dateOfBirth": {
+              "day": "28",
+              "month": "02",
+              "year": "1984"
+            },
+            "ssn": "123456789",
+            "sin": null,
+            "positionInCompany": "Chairman",
+            "percentageShareholding": 40,
+            "address": {
+              "street": "2600 Michelson Drive",
+              "street2": "Suite 1600",
+              "city": "Irvine",
+              "state": "CA",
+              "country": "US",
+              "zip": "92612"
+            },
+            "ubo": false,
+            "applicant": false
+          }
+        ]
+      }
+    }
+  ]
+}
+
++ Response 201 (application/json)
+
+    + Body
+
+        {
+          "merchantRefNum": "12311112",
+           "batchId": "81c67e4f-0358-4360-8fcc-f2fcd47f9e3b",
+        }
+
+
 ## Get Application Batch by Id [/v1/applicationbatches/<batchId>]
 
 ### Get Application Batch by Id [GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
@@ -1196,349 +1542,3 @@ Do not supply a request body for GET method.
                 }
               ]
             }
-            
-            
-## Submit Batch [/merchantonboarding/v1/applicationbatches]
-
-### Submit Batch [POST /merchantonboarding/v1/applicationbatches]
-
-+ Parameters
-    + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
-    + applications: `name": "name", "onboardingConfigId": "221444","locale": "en_us",` (string, required) - Applications specify a set of steps and their execution order.
-
-+ Request (application/json)
-
-    {
-      "merchantRefNum": "12311112",
-      "applications": [
-        {
-          "name": "name",
-          "merchantRefNum": "1231111",
-          "onboardingConfigId": "221444",
-          "locale": "en_us",
-          "metaData": null,
-          "submit": true,
-          "statusReason": null,
-          "businessLegalEntity": {
-            "type": "LTD",
-            "legalName": "{{legal_name}}",
-            "registrationNumber": "F01011",
-            "taxIdentificationNumber": "TAX123456",
-            "description": "Diesel motors and vehicles",
-            "users": [
-          {
-            "email": "{{bleemail}}",
-            "fullName": "{{bleusername}}",
-            "loginName": "{{bleusername}}",
-            "password": "Pwd1234!"
-          }
-        ],
-        "achBankAccount": null,
-        "bacsBankAccount": null,
-        "sepaBankAccount": null,
-        "wireBankAccount": null,
-        "eftBankAccount": null,
-        "address": {
-          "street": "2600 Michelson Drive",
-          "street2": "Suite 1600",
-          "city": "Irvine",
-          "state": "CA",
-          "country": "ES",
-          "zip": "92612"
-        },
-        "businessDetails": [
-          {
-            "tradeName": "Good Office Services USA",
-            "tradeAddress": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "ES",
-              "zip": "92612"
-            },
-            "category": "ACCT",
-            "mcc": null,
-            "website": "https://goodoffice.us",
-            "phoneNumber": {
-              "countryCode": "+1",
-              "number": "9090909090"
-            },
-            "email": "support@goodoffice.us",
-            "users": [
-              {
-                "email": "{{bdemail}}",
-                "fullName": "{{bdusername}}",
-                "loginName": "{{bdusername}}",
-                "password": "Pwd1234!",
-                "status": null
-              }
-            ],
-            "achBankAccount": null,
-            "bacsBankAccount": null,
-            "sepaBankAccount": null,
-            "wireBankAccount": null,
-            "eftBankAccount": null,
-            "accounts": [
-              {
-                "name": "CARD USD Account",
-                "type": "MERCHANT",
-                "paymentType": "CARD",
-                "currency": "GBP",
-                "settlementCurrency": "GBP",
-                "statementDescriptor": {
-                  "descriptor": "Good Office Services",
-                  "phone": "9090909090"
-                },
-                "terminalType": "ECOM",
-                "cardTypes": [
-                  "VI",
-                  "MC"
-                ],
-                "processingOptions": [
-                  {
-                    "cardType": "AM",
-                    "mid": "454545",
-                    "tids": [
-                      "2221",
-                      "333233"
-                    ]
-                  }
-                ],
-                "users": [
-                  {
-                    "email": "{{acctemail}}",
-                    "fullName": "{{acctusername}}",
-                    "loginName": "{{acctusername}}",
-                    "password": "Pwd1234!"
-                  }
-                ],
-                "achBankAccount": null,
-                "bacsBankAccount": {
-                  "accountNumber": "94001521",
-                  "beneficiaryAccountName": "Main",
-                  "beneficiaryBankCountry": "GB",
-                  "sortCode": "857412"
-                },
-                "sepaBankAccount": null,
-                "wireBankAccount": null,
-                "eftBankAccount": null
-              }
-            ],
-            "contacts": [
-              {
-                "type": "SALES",
-                "title": "Mr",
-                "firstName": "Good",
-                "lastName": "Human",
-                "middleName": "Ok",
-                "phoneNumber": {
-                  "countryCode": "+1",
-                  "number": "9090909090"
-                },
-                "email": "goodhuman@goodoffice.us"
-              }
-            ]
-          }
-        ],
-        "principals": [
-          {
-            "title": "Mr",
-            "firstName": "Susumumu",
-            "lastName": "Hosoinon",
-            "middleName": null,
-            "previousLastName": null,
-            "dateOfBirth": {
-              "day": "28",
-              "month": "02",
-              "year": "1984"
-            },
-            "ssn": "123456789",
-            "sin": null,
-            "positionInCompany": "Chairman",
-            "percentageShareholding": 40,
-            "address": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "US",
-              "zip": "92612"
-            },
-            "ubo": false,
-            "applicant": false
-          }
-        ]
-      }
-    },
-    {
-      "name": null,
-      "merchantRefNum": "123243",
-      "onboardingConfigId": "221444",
-      "locale": "en_us",
-      "metaData": null,
-      "submit": true,
-      "statusReason": null,
-      "businessLegalEntity": {
-        "type": "LTD",
-        "legalName": "{{legal_name1}}",
-        "registrationNumber": "F01011",
-        "taxIdentificationNumber": "TAX123456",
-        "description": "Diesel motors and vehicles",
-        "users": [
-          {
-            "email": "{{bleemail1}}",
-            "fullName": "{{bleusername1}}",
-            "loginName": "{{bleusername1}}",
-            "password": "Pwd1234!"
-          }
-        ],
-        "achBankAccount": null,
-        "bacsBankAccount": null,
-        "sepaBankAccount": null,
-        "wireBankAccount": null,
-        "eftBankAccount": null,
-        "address": {
-          "street": "2600 Michelson Drive",
-          "street2": "Suite 1600",
-          "city": "Irvine",
-          "state": "CA",
-          "country": "ES",
-          "zip": "92612"
-        },
-        "businessDetails": [
-          {
-            "tradeName": "Good Office Services USA",
-            "tradeAddress": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "ES",
-              "zip": "92612"
-            },
-            "category": "ACCT",
-            "mcc": null,
-            "website": "https://goodoffice.us",
-            "phoneNumber": {
-              "countryCode": "+1",
-              "number": "9090909090"
-            },
-            "email": "support@goodoffice.us",
-            "users": [
-              {
-                "email": "{{bdemail1}}",
-                "fullName": "{{bdusername1}}",
-                "loginName": "{{bdusername1}}",
-                "password": "Pwd1234!",
-                "status": null
-              }
-            ],
-            "achBankAccount": null,
-            "bacsBankAccount": null,
-            "sepaBankAccount": null,
-            "wireBankAccount": null,
-            "eftBankAccount": null,
-            "accounts": [
-              {
-                "name": "CARD USD Account",
-                "type": "MERCHANT",
-                "paymentType": "CARD",
-                "currency": "GBP",
-                "settlementCurrency": "GBP",
-                "statementDescriptor": {
-                  "descriptor": "Good Office Services",
-                  "phone": "9090909090"
-                },
-                "terminalType": "ECOM",
-                "cardTypes": [
-                  "VI",
-                  "MC"
-                ],
-                "processingOptions": [
-                  {
-                    "cardType": "AM",
-                    "mid": "454545",
-                    "tids": [
-                      "2221",
-                      "333233"
-                    ]
-                  }
-                ],
-                "users": [
-                  {
-                    "email": "{{acctemail1}}",
-                    "fullName": "{{acctusername1}}",
-                    "loginName": "{{acctusername1}}",
-                    "password": "Pwd1234!"
-                  }
-                ],
-                "achBankAccount": null,
-                "bacsBankAccount": {
-                  "accountNumber": "94001521",
-                  "beneficiaryAccountName": "Main",
-                  "beneficiaryBankCountry": "GB",
-                  "sortCode": "857412"
-                },
-                "sepaBankAccount": null,
-                "wireBankAccount": null,
-                "eftBankAccount": null
-              }
-            ],
-            "contacts": [
-              {
-                "type": "SALES",
-                "title": "Mr",
-                "firstName": "Good",
-                "lastName": "Human",
-                "middleName": "Ok",
-                "phoneNumber": {
-                  "countryCode": "+1",
-                  "number": "9090909090"
-                },
-                "email": "goodhuman@goodoffice.us"
-              }
-            ]
-          }
-        ],
-        "principals": [
-          {
-            "title": "Mr",
-            "firstName": "Susumumu",
-            "lastName": "Hosoinon",
-            "middleName": null,
-            "previousLastName": null,
-            "dateOfBirth": {
-              "day": "28",
-              "month": "02",
-              "year": "1984"
-            },
-            "ssn": "123456789",
-            "sin": null,
-            "positionInCompany": "Chairman",
-            "percentageShareholding": 40,
-            "address": {
-              "street": "2600 Michelson Drive",
-              "street2": "Suite 1600",
-              "city": "Irvine",
-              "state": "CA",
-              "country": "US",
-              "zip": "92612"
-            },
-            "ubo": false,
-            "applicant": false
-          }
-        ]
-      }
-    }
-  ]
-}
-
-+ Response 201 (application/json)
-
-    + Body
-
-        {
-          "merchantRefNum": "12311112",
-           "batchId": "81c67e4f-0358-4360-8fcc-f2fcd47f9e3b",
-        }
