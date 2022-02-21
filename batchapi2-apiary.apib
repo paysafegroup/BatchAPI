@@ -244,6 +244,24 @@ For example:
         + Include Wire Bank Account
         + Include User
 
+## Address 
++ `address` (object) : Details of the address.
+    + Properties
+        + id: `address-1111` (string) This is the unique ID returned in the response after some delay. This ID can be used for future associated requests.
+            _Read Only_
+        + street: `100 Queen Street West` (string) - This is the first line of the street address.
+             _Mandatory_
+        + street2: `Apt. 245` (string) - This is the second line of the street address.
+            _Optional_
+        + city: `Toronto` (string) - This is the city where the address is located.
+             _Mandatory_
+        + state: `ON` (string) - This is the state/province/region of the address. For Canada see [Province Codes](#provincecodes). For US see [State Codes](#statecodes).
+             _Mandatory_
+        + country: `CA` (string) - This is the [country code](#countrycodes) of the address.
+             _Mandatory_
+        + zip: `M5H 2N2` (string) - This is the zip/postal code of the address. This cannot contain special characters.
+             _Mandatory_
+
 ## Business Details
 + `businessDetails` (object):  Array of Business Details.
     + Properties
@@ -292,6 +310,56 @@ For example:
             _Read Only_
         + beneficiaryBankCountry: `GB` (string) - This is the [country](#sepacountries) of the beneficiary bank's address.
             _Mandatory_
+
+## Principals
++ `principals` (object) : Array of Principals.
+    + Properties
+        + id: `ph-1111` (string) - This is the unique ID returned in the response after some delay. This ID can be used for future associated requests.
+            _Read Only_
+        + isDirector: `false` (boolean) - This is the country code of customer support phone number.
+            _Optional_
+        + isApplicant: `true` (boolean) - This is the Customer support phone number.
+            _Optional_
+        + isControlProng: `false` (boolean) - This indicates whether this person is the Control Prong.
+            _Optional_
+        + title: `MR` (string) - This indicates profession or marital status. Possile values are: MR, MRS, MS, Jr, Dr.
+            _Optional_
+        + firstName: `466441111` (string) - This is the first name of the business owner.
+            _Optional_
+        + middleName: `ph-1111` (string) - This is the middle name of the business owner.
+            _Optional_
+        + lastName: `81` (string) - This is the last name of the business owner.
+            _Optional_
+        + previousLastName: `Doe` (string) - This is the previous last name of the business owner. **Note:** This is used for European business owners only.
+            _Optional_
+        + email: `acscv@email.com` (string) - This is the email address of the business owner.
+            _Optional_
+        + Include Date of Birth
+        + nationality: `466441111` (enum) - This is the nationality code of the business owner. **Note:** This is used for European business owners only.<br/> See [Nationality Codes](#nationalitycodes).
+            _Optional_
+        + type: `466441111` (enum) - Possible values are: 
+            + Members
+                + OWNER
+                + DIRECTOR
+                + TRUSTEE
+                + PARTNER
+                + SENIOR_MANAGER
+                + CONTROL_PRONG
+            _Optional_
+        + ssn: `123456789` (string) - This is the Social Security Number of the person.
+            _Optional_
+        + ssnLastFour: `6789` (string) - This is the last 4 digits of SSN sent in response.   
+            _Read Only_
+        + sin: `466441111` (string) - This is the Social Insurance Number of the person.
+            _Optional_
+        + sinLastFour: `1111` (string) - This is the last 4 digits of SIN sent in response.
+            _Read Only_
+        + positionInCompany: `CEO` (string) - This is the position of the person in the company. 
+            _Optional_
+        + percentageShareholding: `30` (string) - This is the percentage of ownership by the business owner.
+            _Optional_
+
+
 
 ## User
 + `users` (object) - An array of user.
