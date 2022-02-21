@@ -105,113 +105,52 @@ For example:
 
 # Mandatory Fields
 
-|Field|Validation|Description|
-|---                   |---                       |---   |
-|account.currency|Not Null|
-|account.paymentType|Not Null|
-|account.settlementCurrency|Not Null|
-|account.statementDescriptor|Not Null|
-|address.city|Not Blank|
-|address.city|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|address.city|Not Null|
-|address.country|Not Null|
-|address.state|^(?!\\s|.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|address.state|01 to 40|
-|address.state|Not Null|
-|address.street|Not Blank|
-|address.street|02 to 50|
-|address.street|Not Null|
-|address.street|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|address.street2|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|address.street2|02 to 50|
-|address.zip|Not Null|
-|address.zip|Not Blank|
-|application.acceptTermsAndConditions|Not Null|
-|application.acceptTermsAndConditions|Assert True|
-|application.businessLegalEntity|Not Null|
-|application.merchantRefNum|Not Blank|
-|application.onboardingConfigId|Not Blank|
-|application.users|Not Empty|
-|bacsBankAccount.accountNumber|Not Blank|
-|bacsBankAccount.beneficiaryAccountName|Not Blank|
-|bacsBankAccount.beneficiaryBankCountry|Not Null|
-|bacsBankAccount.sortCode|[\\d]{6}|
-|bacsBankAccount.sortCode|Not Blank|
-|businessDetails.accounts|Not Empty|
-|businessDetails.category|Not Null|
-|businessDetails.id|Not Null|
-|businessLegalEntity.address|Not Null|
-|businessLegalEntity.businessDetails|Not Empty|
-|businessLegalEntity.description|Not Null|
-|businessLegalEntity.description|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|businessLegalEntity.description|02 to 255|Length Allowed|
-|businessLegalEntity.id|Not Null|
-|businessLegalEntity.legalName|Not Blank|
-|businessLegalEntity.principals|Not Empty|
-|businessLegalEntity.registrationNumber|05 to 10|Length Allowed|
-|businessLegalEntity.sanctionsConsent|Not Null|
-|businessLegalEntity.taxIdentificationNumber|\\d{9}|
-|businessLegalEntity.taxIdentificationNumber|Not Blank|
-|businessLegalEntity.type|Not Null|
-|contact.email|Not Null|
-|contact.firstName|Not Blank|
-|contact.firstName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|contact.firstName|Not Null|
-|contact.firstName|01 to 25|
-|contact.lastName|01 to 25|
-|contact.lastName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|contact.middleName|01 to 25|
-|contact.middleName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|principal.address|Not Null|
-|principal.dateOfBirth|Not Null|
-|principal.firstName|Not Blank|
-|principal.firstName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|principal.firstName|01 to 25|Length Allowed|
-|principal.firstName|Not Null|
-|principal.lastName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|principal.lastName|01 to 25|Length Allowed|
-|principal.lastName|Not Blank|
-|principal.middleName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|principal.middleName|01 to 25|Length Allowed|
-|principal.positionInCompany|Not Blank|
-|principal.previousLastName|^(?!\\s.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|principal.previousLastName|01 to 25|Length Allowed|
-|principal.title|(Mr.|Ms.|Mrs.)|
-|sanctionsConsent.complaint|Not Null|
-|sanctionsConsent.justification|5 to 2000|Length Allowed|
-|sepaBankAccount.beneficiaryAccountName|Not Blank|
-|sepaBankAccount.beneficiaryBankCountry|Not Null|
-|sepaBankAccount.ibanNumber|Not Blank|
-|sepaBankAccount.swiftNumber|Not Blank|
-|statementDescriptor.descriptor|1 to 20|Length Allowed|
-|statementDescriptor.descriptor|Not Empty|
-|statementDescriptor.phone|1 to 13|Length Allowed|
-|statementDescriptor.phone|Not Empty|
-|user.email|Not Null|
-|user.email|Not Blank|
-|user.loginName|Not Blank|
-|user.loginName|^([a-z]+[a-z0-9._-]*)$|
-|user.loginName|Not Null|
-|user.password|.*[A-Z].*|Must contain at least 1 uppercase letter|
-|user.password|^(?!\\s#7.*\\s$).*$|No Leading and Trailing Spaces are allowed|
-|user.password|Not Blank|
-|user.password|.*[a-z].*|Must contain at least 1 lowercase letter|
-|user.password|Not Null|
-|user.password|.*\\d.*|Must contain at least 1 number|
-|wireBankAccount.beneficiaryAccountName|Not Blank|
-|wireBankAccount.beneficiaryAddress|Not Blank|
-|wireBankAccount.beneficiaryBankCity|Not Blank|
-|wireBankAccount.beneficiaryBankCountry|Not Null|
-|wireBankAccount.beneficiaryBankName|Not Blank|
-|wireBankAccount.beneficiaryBankPostCode|Not Blank|
-|wireBankAccount.beneficiaryBankRegion|Not Blank|
-|wireBankAccount.beneficiaryCity|Not Blank|
-|wireBankAccount.beneficiaryCountry|Not Null|
-|wireBankAccount.beneficiaryPostCode|Not Blank|
-|wireBankAccount.beneficiaryRegion|Not Blank|
-|wireBankAccount.ibanNumber|Not Blank|
-|wireBankAccount.swiftNumber|Not Blank|
-|wireBankAccount.swiftNumber|^([A-Za-z0-9]{11})$|
+|Field|Validation|Description|Valid Example Data|
+|---                   |---                       |---   |---   |
+|application.onboardingConfigId|Not Blank|Onboarding Config Id cannot be blank|140144|
+|application.bankaccount|NotEmpty|Bank account cannot be empty||
+|application.merchantRefNum|Not Blank|Merchant ref number cannot be blank|123123132|
+|application.acceptTermsAndConditions|AssertTrue|Terms and conditions should be accepted for submitting the application|TRUE|
+|application.businessLegalEntity|Not Null|Business legal entity cannot be null||
+|application.users|Not Empty|Atleast one user is mandatory for requesting an application||
+|application.acceptTermsAndConditions|Not Null|Terms and conditions cannot be null|TRUE|
+|user.email|Not Blank|User email cannot be blank|user@compay.com|
+|user.loginName|Not Blank|User login name cannot be blank|Micheal|
+|user.password|Not Blank|Password cannot be blank|P@ssw04d|
+|businessLegalEntity.address|Not Null|Address cannot be null||
+|businessLegalEntity.id|Not Null|id cannot be null|Required for ADD_LOCATION, ADD_ACCOUNT|
+|businessLegalEntity.taxIdentificationNumber|\\d{9} 9 digit number|123456789|
+|businessLegalEntity.taxIdentificationNumber|Not Blank|tax Identification Number cannot be blank|123456789|
+|businessLegalEntity.principals|Not Empty|Principals cannot be empty|
+|businessLegalEntity.legalName|Not Blank|Legal Name cannot be blank paysafe company|
+|businessLegalEntity.type|Not Null|Type cannot be null|CHARITY, CIC, CLUB, CORP, GOV, INDIVIDUAL, LLC, LLP, LTD, NPCORP, OTHER, PARTNERSHP, PLC, SOLEPROP, TRUST|
+|businessLegalEntity.businessDetails|Not Empty|Business Details cannot be empty||
+|businessDetails.accounts|Not Empty|Accounts cannot be empty||
+|businessDetails.tradeName|Not Blank|Trade Name cannot be blank|paysafe trading co.|
+|businessDetails.id|Not Null|id dannot be null|required for ADD_ACCOUNT|
+|businessDetails.category|Not Blank|Category cannot be null EDU||
+|statementDescriptor.phone|Not Empty|Phone cannot be empty|8932223111|
+|statementDescriptor.descriptor|01 to 20|Descriptor should be of length 1-20 characters some card description||
+|address.state|Not Blank|state cannot be empty|TX|
+|address.country|Not Null|country cannot be empty|US|
+|address.city|Not Blank|city cannot be empty|Houston|
+|address.zip|Not Blank|zip cannot be empty|77001|
+|address.street|Not Blank|street cannot be empty|St. peter's Church street|
+|contact.firstName|Not Blank|First name cannot be empty|Micheal|
+|account.settlementCurrency|Not Null|Settlement currency cannot be null|USD|
+|account.paymentType|Not Null|payment Type cannot be null|CC, DD|
+|account.currency|Not Null|currency cannot be null|USD|
+|account.statementDescriptor|Not Null|statement Descriptor cannot be null||
+|principal.lastName|Not Blank|Last Name cannot be blank|Waugh|
+|principal.address|Not Null|Address cannot be null|Old Church Street|
+|principal.firstName|Not Blank|First Name cannot be blank|Micheal|
+|principal.positionInCompany|Not Blank|Position In Company cannot be blank|Trustee|
+|principal.dateOfBirth|Not Null|date Of Birth cannot be null||
+|statementDescriptor.phone|01 to 13|Phone should between 1 - 13 digits length|+1 832-395-1500|
+|statementDescriptor.descriptor|Not Empty|Descriptor cannot be empty|card description||
+|achBankAccount.routingNumber|Not Blank|routing Number cannot be blank|524871232|
+|achBankAccount.accountNumber|Not Blank|account Number cannot be blank|2082649738|
+
 
 ## Submit Batch [/merchantonboarding/v1/applicationbatches]
 
