@@ -18,8 +18,6 @@ End to end automated underwriting is supported
 Automated account provisioning for the approved applications is supported
 API responses and webhooks are triggered for errors occurred during application processing
 
-## Technical Details
-
 ## Request Attributes
 
 The following tables include the mandatory and optional parameters for create Batch Application request. For a detailed description of the attributes listed in these tables, please refer to the Application Batch Object
@@ -107,7 +105,7 @@ For example:
 
 |Field|Validation|Description|Valid Example Data|
 |---                   |---                       |---   |---   |
-|application.onboardingConfigId|Not Blank|Onboarding Config Id cannot be blank|140144|
+|application.onboardingConfigId|Not Blank|Onboarding Config Id cannot be blank. This id is provided by Paysafe Onboarding team.|140144|
 |application.bankaccount|NotEmpty|Bank account cannot be empty||
 |application.merchantRefNum|Not Blank|Merchant ref number cannot be blank|123123132|
 |application.acceptTermsAndConditions|AssertTrue|Terms and conditions should be accepted for submitting the application|TRUE|
