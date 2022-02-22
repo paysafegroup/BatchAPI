@@ -103,51 +103,51 @@ For example:
 
 # Mandatory Fields
 
-|Field|Validation|Description|Valid Example Data|
+|Field|Type|Description|Valid Example Data|
 |---                   |---                       |---   |---   |
-|application.onboardingConfigId|Not Blank|Onboarding Config Id cannot be blank. This id is provided by Paysafe Onboarding team.|140144|
-|application.bankaccount|Not Blank|Bank account cannot be empty||
-|application.merchantRefNum|Not Blank|Merchant ref number cannot be blank|123123132|
-|application.acceptTermsAndConditions|AssertTrue|Terms and conditions should be accepted for submitting the application|TRUE|
-|application.businessLegalEntity|Not Blank|Business legal entity cannot be null||
-|application.users|Not Blank|Atleast one user is mandatory for requesting an application||
-|application.acceptTermsAndConditions|Not Blank|Terms and conditions cannot be null|TRUE|
-|user.email|Not Blank|User email cannot be blank|user@compay.com|
-|user.loginName|Not Blank|User login name cannot be blank|Micheal|
-|user.password|Not Blank|Password cannot be blank|P@ssw04d|
-|businessLegalEntity.address|Not Blank|Address cannot be null||
-|businessLegalEntity.id|Not Blank|id cannot be null|Required for ADD_LOCATION, ADD_ACCOUNT|
-|businessLegalEntity.taxIdentificationNumber|\\d{9} 9 digit number|123456789|
-|businessLegalEntity.taxIdentificationNumber|Not Blank|tax Identification Number cannot be blank|123456789|
-|businessLegalEntity.principals|Not Blank|Principals cannot be empty|
-|businessLegalEntity.legalName|Not Blank|Legal Name cannot be blank paysafe company|
-|businessLegalEntity.type|Not Blank|Type cannot be null|CHARITY, CIC, CLUB, CORP, GOV, INDIVIDUAL, LLC, LLP, LTD, NPCORP, OTHER, PARTNERSHP, PLC, SOLEPROP, TRUST|
-|businessLegalEntity.businessDetails|Not Blank|Business Details cannot be empty||
-|businessDetails.accounts|Not Blank|Accounts cannot be empty||
-|businessDetails.tradeName|Not Blank|Trade Name cannot be blank|paysafe trading co.|
-|businessDetails.id|Not Blank|id dannot be null|required for ADD_ACCOUNT|
-|businessDetails.category|Not Blank|Category cannot be null EDU||
-|statementDescriptor.phone|Not Blank|Phone cannot be empty|8932223111|
-|statementDescriptor.descriptor|01 to 20|Descriptor should be of length 1-20 characters some card description||
-|address.state|Not Blank|state cannot be empty|TX|
-|address.country|Not Blank|country cannot be empty|US|
-|address.city|Not Blank|city cannot be empty|Houston|
-|address.zip|Not Blank|zip cannot be empty|77001|
-|address.street|Not Blank|street cannot be empty|St. peter's Church street|
-|contact.firstName|Not Blank|First name cannot be empty|Micheal|
-|account.settlementCurrency|Not Blank|Settlement currency cannot be null|USD|
-|account.paymentType|Not Blank|payment Type cannot be null|CC, DD|
-|account.currency|Not Blank|currency cannot be null|USD|
-|account.statementDescriptor|Not Blank|statement Descriptor cannot be null||
-|principal.lastName|Not Blank|Last Name cannot be blank|Waugh|
-|principal.address|Not Blank|Address cannot be null|Old Church Street|
-|principal.firstName|Not Blank|First Name cannot be blank|Micheal|
-|principal.positionInCompany|Not Blank|Position In Company cannot be blank|Trustee|
-|principal.dateOfBirth|Not Blank|date Of Birth cannot be null||
-|statementDescriptor.phone|01 to 13|Phone should between 1 - 13 digits length|+1 832-395-1500|
-|statementDescriptor.descriptor|Not Blank|Descriptor cannot be empty|card description||
-|achBankAccount.routingNumber|Not Blank|routing Number cannot be blank|524871232|
-|achBankAccount.accountNumber|Not Blank|account Number cannot be blank|2082649738|
+|application.onboardingConfigId|string|Onboarding Config Id cannot be blank. This id is provided by Paysafe Onboarding team.|140144|
+|application.bankaccount|string|Bank account cannot be empty||
+|application.merchantRefNum|string|Merchant ref number cannot be blank|123123132|
+|application.acceptTermsAndConditions|boolean|AssertTrue, terms and conditions should be accepted for submitting the application|TRUE|
+|application.businessLegalEntity|string|Business legal entity cannot be null||
+|application.users|string|Atleast one user is mandatory for requesting an application||
+|application.acceptTermsAndConditions|boolean|Terms and conditions cannot be null|TRUE|
+|user.email|string|User email cannot be blank|user@compay.com|
+|user.loginName|string|User login name cannot be blank|Micheal|
+|user.password|string|Password cannot be blank|P@ssw04d|
+|businessLegalEntity.address|string|Address cannot be null||
+|businessLegalEntity.id|string|id cannot be null|Required for ADD_LOCATION, ADD_ACCOUNT|
+|businessLegalEntity.taxIdentificationNumber|string|\\d{9}, 9 digit number|123456789|
+|businessLegalEntity.taxIdentificationNumber|string|tax Identification Number cannot be blank|123456789|
+|businessLegalEntity.principals|string|Principals cannot be empty|
+|businessLegalEntity.legalName|string|Legal Name cannot be blank paysafe company|
+|businessLegalEntity.type|string|Type cannot be null|CHARITY, CIC, CLUB, CORP, GOV, INDIVIDUAL, LLC, LLP, LTD, NPCORP, OTHER, PARTNERSHP, PLC, SOLEPROP, TRUST|
+|businessLegalEntity.businessDetails|stringk|Business Details cannot be empty||
+|businessDetails.accounts|string|Accounts cannot be empty||
+|businessDetails.tradeName|string|Trade Name cannot be blank|paysafe trading co.|
+|businessDetails.id|string|id dannot be null|required for ADD_ACCOUNT|
+|businessDetails.category|string|Category cannot be null EDU||
+|statementDescriptor.phone|string|Phone cannot be empty|8932223111|
+|statementDescriptor.descriptor|string|01 to 20, descriptor should be of length 1-20 characters some card description||
+|address.state|string|state cannot be empty|TX|
+|address.country|string|country cannot be empty|US|
+|address.city|string|city cannot be empty|Houston|
+|address.zip|string|zip cannot be empty|77001|
+|address.street|string|street cannot be empty|St. peter's Church street|
+|contact.firstName|string|First name cannot be empty|Micheal|
+|account.settlementCurrency|string|Settlement currency cannot be null|USD|
+|account.paymentType|string|payment Type cannot be null|CC, DD|
+|account.currency|string|currency cannot be null|USD|
+|account.statementDescriptor|string|statement Descriptor cannot be null||
+|principal.lastName|string|Last Name cannot be blank|Waugh|
+|principal.address|string|Address cannot be null|Old Church Street|
+|principal.firstName|string|First Name cannot be blank|Micheal|
+|principal.positionInCompany|string|Position In Company cannot be blank|Trustee|
+|principal.dateOfBirth|string|date Of Birth cannot be null||
+|statementDescriptor.phone|string|01 to 13, phone should between 1 - 13 digits length|+1 832-395-1500|
+|statementDescriptor.descriptor|string|Descriptor cannot be empty|card description||
+|achBankAccount.routingNumber|string|routing Number cannot be blank|524871232|
+|achBankAccount.accountNumber|string|account Number cannot be blank|2082649738|
 
 # Error Examples
 
