@@ -203,9 +203,9 @@ RESPONSE
 ```
 
 
-## Submit Batch [/merchantonboarding/v1/applicationbatches]
+## Submit Batch [/merchant/v1/applicationbatches]
 
-### Submit Batch [POST /merchantonboarding/v1/applicationbatches]
+### Submit Batch [POST /merchant/v1/applicationbatches]
 
 + Parameters
     + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
@@ -552,9 +552,9 @@ RESPONSE
         }
 
 
-## Get Application Batch by Id [/v1/applicationbatches/<batchId>]
+## Get Application Batch by Id [/merchant/v1/applicationbatches/<batchId>]
 
-### Get Application Batch by Id [GET /v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
+### Get Application Batch by Id [GET /merchant/v1/applicationbatches/ec8e0615-9057-4075-9abb-14a3c65530d6]
 
 + Parameters
     + batch_id: `ec8e0615-9057-4075-9abb-14a3c65530d6` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this batchid.
@@ -1043,9 +1043,9 @@ Do not supply a request body for GET method.
 }
 
 
-## Get Application Batch by Merchant Reference Number  [/v1/applicationbatches?merchantRefNum=<merchantRefNumber>]
+## Get Application Batch by Merchant Reference Number  [/merchant/v1/applicationbatches?merchantRefNum=<merchantRefNumber>]
 
-### Get Application Batch by Merchant Reference Number [GET /v1/applicationbatches?merchantRefNum=976559030]
+### Get Application Batch by Merchant Reference Number [GET /merchant/v1/applicationbatches?merchantRefNum=976559030]
 
 + Parameters
     + merchantRefNumber: `976559030` (string, required) - This is the unique reference number of the payment; merchant can identify the transaction by submitting this merchantRefNumber.
